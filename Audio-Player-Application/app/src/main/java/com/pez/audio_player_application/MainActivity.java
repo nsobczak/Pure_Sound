@@ -14,6 +14,9 @@ import android.view.MenuItem;
 
 /**
  * MainActivity : activity_01
+ * TODO: Faire un lien vers la 2ème activité quand on clique sur une chanson
+ * TODO: ajouter la liste des chansons
+ * TODO: lier les 3 fragments
  */
 public class MainActivity extends AppCompatActivity
 {
@@ -81,7 +84,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.audio_player_main, menu);
+        getMenuInflater().inflate(R.menu.audio_player_main_menu, menu);
         return true;
     }
 

@@ -10,6 +10,8 @@
 
     <include layout="@layout/content_main"/>
 
+    <!--TODO: mettre l'AppBarLayout en bas de l'écran
+    TODO: aligner les boutons sur une ligne-->
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

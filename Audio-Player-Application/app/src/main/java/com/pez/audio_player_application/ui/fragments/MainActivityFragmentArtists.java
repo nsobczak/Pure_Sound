@@ -1,7 +1,7 @@
 package com.pez.audio_player_application.ui.fragments;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +12,12 @@ import com.pez.audio_player_application.R;
 //__________________________________________________________________________
 
 /**
- * MainActivityFragment : A placeholder fragment containing a songs list view.
+ * MainActivityFragmentArtists : A placeholder fragment containing a songs list view.
  */
-public class MainActivityFragment extends Fragment
+public class MainActivityFragmentArtists extends Fragment
 {
 
-    public MainActivityFragment()
+    public MainActivityFragmentArtists()
     {
     }
 
@@ -25,6 +25,6 @@ public class MainActivityFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_main_songs, container, false);
+        return inflater.inflate(R.layout.fragment_main_artists, container, false);
     }
 }
