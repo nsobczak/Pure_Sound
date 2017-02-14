@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.pez.audio_player_application.async.RetrieveAlbumInfoAsyncTask;
 import com.pez.audio_player_application.helpers.MetadataSongHelper;
 
 
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         // TODO : enlever cette ligne de test
-        MetadataSongHelper.getAlbumInfo("OK computer", "Radiohead");
+        new RetrieveAlbumInfoAsyncTask().execute("OK computer", "Radiohead");
 
     }
 
