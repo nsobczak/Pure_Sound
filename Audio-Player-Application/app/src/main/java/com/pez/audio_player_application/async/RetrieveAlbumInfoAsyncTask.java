@@ -1,6 +1,9 @@
 package com.pez.audio_player_application.async;
 
 import android.os.AsyncTask;
+
+import com.pez.audio_player_application.SongDetailsActivity;
+import com.pez.audio_player_application.helpers.MetadataSongHelper;
 import com.pez.audio_player_application.pojo.Album;
 
 /**
@@ -14,8 +17,10 @@ public class RetrieveAlbumInfoAsyncTask extends AsyncTask<String, Integer, Album
     @Override
     protected Album doInBackground(String... params) {
         if(params.length >= 2) {
-            String artistName = params[0];
             String albumName = params[0];
+            String artistName = params[1];
+            Album album = MetadataSongHelper.getAlbumInfo(albumName, artistName);
+
         }
         return null;
     }
