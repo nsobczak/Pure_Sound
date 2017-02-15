@@ -1,8 +1,6 @@
 package com.pez.audio_player_application.pojo;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,7 +13,7 @@ public class Album {
     private String title;
     private String mbid;
     private String url;
-    private ImageUrl[] images;
+    private String cover_url;
 
 
     public Album(JSONObject albumJSON) {
@@ -24,17 +22,19 @@ public class Album {
             this.title = albumJSON.getString("name");
             this.mbid = albumJSON.getString("mbid");
             this.url = albumJSON.getString("url");
+            JSONArray images = albumJSON.getJSONArray("image");
+            this.cover_url = ((JSONObject)images.get(images.length() - 1)).getString("#text");;
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    public Album(String artist, String title, String mbid, String url, ImageUrl[] images) {
+    public Album(String artist, String title, String mbid, String url, String cover_url) {
         this.artist = artist;
         this.title = title;
         this.mbid = mbid;
         this.url = url;
-        this.images = images;
+        this.cover_url = cover_url;
     }
 
     public String getArtist() {
@@ -51,19 +51,6 @@ public class Album {
 
     public String getUrl() {
         return url;
-    }
-
-    public ImageUrl[] getImages() {
-        return images;
-    }
-
-    public String getURLforImageSize(String size) {
-        for (ImageUrl image : images) {
-            if (image.getSize().contentEquals(size)) {
-                return image.getUrl();
-            }
-        }
-        return null;
     }
 
 }

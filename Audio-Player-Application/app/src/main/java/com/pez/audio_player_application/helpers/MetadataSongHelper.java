@@ -116,9 +116,4 @@ public class MetadataSongHelper {
             return null;
         }
     }
-
-    public static void getAlbumCover(String albumTitle, String artistName) {
-
-    }
-
 }

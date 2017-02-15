@@ -20,8 +20,8 @@ public class RetrieveAlbumInfoAsyncTask extends AsyncTask<String, Integer, Album
             String albumName = params[0];
             String artistName = params[1];
             // TODO : A enlever
-            Album album = MetadataSongHelper.getAlbumInfo(albumName, artistName);
-            MetadataSongHelper.getAlbumsFromArtist(artistName);
+            // Album album = MetadataSongHelper.getAlbumInfo(albumName, artistName);
+            // MetadataSongHelper.getAlbumsFromArtist(artistName);
 
         }
         return null;
