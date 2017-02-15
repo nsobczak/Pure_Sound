@@ -22,15 +22,6 @@ import java.util.List;
 
 public class MetadataSongHelper {
 
-    /* TODO
-      1) Récupérer tous les albums à partir du nom d'un artiste
-      2) Si le nom d'un album est mal orthographié (album non trouvé par exemple) : étape (1)
-         Puis on essaye de trouver l'album le plus proche de celui qui est passé en paramètre
-      3) Récupérer le nom des pistes d'un album
-
-     */
-
-
     public static List<Album> getAlbumsFromArtist(String artistName) {
         String url = Constants.API_BASE_URL + "?method=artist.gettopalbums&artist=" + artistName +
                 "&api_key=" + Constants.API_KEY_LASTFM + "&format=json";
@@ -90,7 +81,9 @@ public class MetadataSongHelper {
                     }
                     String result = sb.toString();
                     try {
-                        return new Album(new JSONObject(result).getJSONObject("album")); // album.getString("artist"), album.getString("name"), album.getString("mbid"), album.getString("url"), null);
+                        JSONObject object = new JSONObject(result);
+                        if(object.has("album"))
+                            return new Album(new JSONObject(result).getJSONObject("album")); // album.getString("artist"), album.getString("name"), album.getString("mbid"), album.getString("url"), null);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

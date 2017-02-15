@@ -15,6 +15,10 @@ public class Album {
     private String cover_url;
     private List<Track> tracks;
 
+    public Album(String artist, String title) {
+        this(artist, title, "", "", "");
+    }
+
     public Album(String artist, String title, String mbid, String url, String cover_url) {
         this.artist = artist;
         this.title = title;
