@@ -52,10 +52,12 @@ public class MetadataSongHelper {
                     String result = sb.toString();
                     try {
                         JSONObject object = new JSONObject(result);
-                        JSONArray list_album = object.getJSONObject("topalbums").getJSONArray("album");
-                        for (int i=0; i < list_album.length(); i++) {
-                            JSONObject current_album = list_album.getJSONObject(i);
-                            albums.add(new Album(current_album));
+                        if(object.has("topalbums")) {
+                            JSONArray list_album = object.getJSONObject("topalbums").getJSONArray("album");
+                            for (int i = 0; i < list_album.length(); i++) {
+                                JSONObject current_album = list_album.getJSONObject(i);
+                                albums.add(new Album(current_album));
+                            }
                         }
                         return albums;
                     } catch (JSONException e) {
