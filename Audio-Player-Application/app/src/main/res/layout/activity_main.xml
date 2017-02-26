@@ -10,8 +10,6 @@
 
     <include layout="@layout/content_main"/>
 
-    <!--TODO: aligner les boutons sur une ligne-->
-
     <android.support.design.widget.AppBarLayout
         android:id="@+id/songAppBar"
         android:layout_width="fill_parent"

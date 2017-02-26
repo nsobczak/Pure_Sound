@@ -1,6 +1,13 @@
 package com.pez.audio_player_application;
 
+import android.Manifest;
+import android.content.ContentResolver;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,11 +15,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.pez.audio_player_application.pojo.Album;
+import com.pez.audio_player_application.pojo.Track;
 import com.pez.audio_player_application.ui.fragments.DownloadAlbumInfo;
-import com.pez.audio_player_application.AudioPlayerApplication;
+
+import java.util.ArrayList;
 
 
 //__________________________________________________________________________
@@ -27,6 +37,8 @@ import com.pez.audio_player_application.AudioPlayerApplication;
 public class MainActivity extends AppCompatActivity
 {
     private DownloadAlbumInfo downloadAlbumInfo;
+    private ArrayList<Track> songList;
+    private ListView songView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,6 +48,25 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Gestion des permissions
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        {
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED)
+            {
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                return;
+            }
+        }
+
+        //Lecture des chansons existantes
+        this.songView = (ListView) findViewById(R.id.songsListLayout);
+
+        // TODO : Récupérer les noms des fichiers
+        this.songList = new ArrayList<Track>();
+        getSongList();
+
+        //Metadonnees
         downloadAlbumInfo = new DownloadAlbumInfo();
         // TODO : Faire le retrieve APRES avoir récupéré les noms des fichiers
         downloadAlbumInfo.retrieveAlbumsInfo(
@@ -119,14 +150,14 @@ public class MainActivity extends AppCompatActivity
         //handle here : Share action
         if (id == R.id.actionShare)
         {
-            Toast.makeText(AudioPlayerApplication.getContext(), "Share listened song" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(AudioPlayerApplication.getContext(), "Share listened song", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         //handle here : Kill action
         if (id == R.id.actionKill)
         {
-            Toast.makeText(AudioPlayerApplication.getContext(), "Kill application" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(AudioPlayerApplication.getContext(), "Kill application", Toast.LENGTH_SHORT).show();
             finish();
             return true;
         }
@@ -134,11 +165,37 @@ public class MainActivity extends AppCompatActivity
         //handle here : Synchronize database action
         if (id == R.id.actionSyncDB)
         {
-            Toast.makeText(AudioPlayerApplication.getContext(), "Sync database" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(AudioPlayerApplication.getContext(), "Sync database", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //__________________________________________________________________________
+
+    public void getSongList()
+    {
+        //retrieve song info
+        ContentResolver musicResolver = getContentResolver();
+        Uri musicUri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+        Cursor trackCursor = musicResolver.query(musicUri, null, null, null, null);
+
+        if (trackCursor != null && trackCursor.moveToFirst())
+        {
+            //get columns indexes
+            int titleColumn = trackCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.TITLE);
+            int durationColumn = trackCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.DURATION);
+            //add songs to list
+            do
+            {
+                this.songList.add(new Track(trackCursor.getString(titleColumn), trackCursor.getInt(durationColumn)));
+            }
+            while (trackCursor.moveToNext());
+        }
+
+        Toast.makeText(AudioPlayerApplication.getContext(), "Tracks retrieved !", Toast.LENGTH_SHORT).show();
+
     }
 
 

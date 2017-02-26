@@ -5,20 +5,24 @@
     android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.pez.audio_player_application.ui.fragments.MainActivityFragmentSongs"
-    tools:showIn="@layout/activity_main"
-    android:layout_alignParentTop="true">
+    tools:context="com.pez.audio_player_application.ui.fragments.MainActivityFragmentSongs">
+    <!--tools:showIn="@layout/activity_main">-->
+
+    <!--TODO: mettre le fragment au-dessus de la barre-->
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:text="Songs list fragment"/>
 
     <ListView
+        android:id="@+id/songsListLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
 
