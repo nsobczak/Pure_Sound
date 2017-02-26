@@ -21,17 +21,6 @@ import java.util.List;
  */
 public class MainActivityFragmentAlbums extends Fragment implements AlbumInfoChangeListener
 {
-
-    public MainActivityFragmentAlbums()
-    {
-
-        // TODO : revoir la position de cette ligne
-        new RetrieveAlbumInfoAsyncTask(this).execute(new Album("Radiohead", "ok computer"),
-                new Album("Beck", "the information")
-        );
-
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)

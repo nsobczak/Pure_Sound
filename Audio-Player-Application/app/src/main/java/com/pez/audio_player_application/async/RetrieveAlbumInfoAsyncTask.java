@@ -40,8 +40,8 @@ public class RetrieveAlbumInfoAsyncTask extends AsyncTask<Album, Integer, List<A
     protected void onPostExecute(List<Album> albums) {
         super.onPostExecute(albums);
         Log.d("", "info albums retrieved ");
-        listener.onAlbumInfoRetrieved(albums);
+        if (listener != null) {
+            listener.onAlbumInfoRetrieved(albums);
+        }
     }
-
-
 }
