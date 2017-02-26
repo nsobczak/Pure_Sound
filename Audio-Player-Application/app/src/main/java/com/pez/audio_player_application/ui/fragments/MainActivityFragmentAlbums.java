@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pez.audio_player_application.R;
+import com.pez.audio_player_application.async.RetrieveAlbumInfoAsyncTask;
 import com.pez.audio_player_application.interfaces.AlbumInfoChangeListener;
 import com.pez.audio_player_application.pojo.Album;
 
@@ -23,6 +24,12 @@ public class MainActivityFragmentAlbums extends Fragment implements AlbumInfoCha
 
     public MainActivityFragmentAlbums()
     {
+
+        // TODO : revoir la position de cette ligne
+        new RetrieveAlbumInfoAsyncTask(this).execute(new Album("Radiohead", "ok computer"),
+                new Album("Beck", "the information")
+        );
+
     }
 
     @Override

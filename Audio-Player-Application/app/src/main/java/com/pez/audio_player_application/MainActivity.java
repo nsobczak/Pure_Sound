@@ -1,7 +1,6 @@
 package com.pez.audio_player_application;
 
 import android.os.Bundle;
-import android.provider.SyncStateContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.pez.audio_player_application.async.RetrieveAlbumInfoAsyncTask;
-import com.pez.audio_player_application.helpers.MetadataSongHelper;
-import com.pez.audio_player_application.pojo.Album;
 
 
 //__________________________________________________________________________
@@ -76,12 +71,6 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-
-        // TODO : enlever cette ligne de test
-        new RetrieveAlbumInfoAsyncTask().execute(new Album("Radiohead", "ok computer"),
-                new Album("Beck", "the information")
-        );
-
     }
 
 

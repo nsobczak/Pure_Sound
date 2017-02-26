@@ -21,6 +21,10 @@ public class RetrieveAlbumInfoAsyncTask extends AsyncTask<Album, Integer, List<A
 
     AlbumInfoChangeListener listener;
 
+    public RetrieveAlbumInfoAsyncTask(AlbumInfoChangeListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     protected List<Album> doInBackground(Album... params) {
         List<Album> albumList = new ArrayList<>();
