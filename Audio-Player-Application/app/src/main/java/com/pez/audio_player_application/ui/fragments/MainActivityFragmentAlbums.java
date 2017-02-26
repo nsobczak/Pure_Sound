@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pez.audio_player_application.R;
+import com.pez.audio_player_application.async.RetrieveAlbumInfoAsyncTask;
 import com.pez.audio_player_application.interfaces.AlbumInfoChangeListener;
 import com.pez.audio_player_application.pojo.Album;
 
@@ -20,11 +21,6 @@ import java.util.List;
  */
 public class MainActivityFragmentAlbums extends Fragment implements AlbumInfoChangeListener
 {
-
-    public MainActivityFragmentAlbums()
-    {
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
