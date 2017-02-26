@@ -16,14 +16,14 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        >
+        android:theme="@style/AppTheme"
+        android:background="#7d5e50">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="#cfab82"
             app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
         <android.support.design.widget.FloatingActionButton
@@ -31,28 +31,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:srcCompat="@android:drawable/ic_media_play"/>
+            app:srcCompat="@android:drawable/ic_media_play"
+            app:backgroundTint="@color/Red_dark" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_songPause"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:srcCompat="@android:drawable/ic_media_pause"/>
+            app:srcCompat="@android:drawable/ic_media_pause"
+            app:backgroundTint="@color/Red_dark" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_songPrevious"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:srcCompat="@android:drawable/ic_media_previous"/>
+            app:srcCompat="@android:drawable/ic_media_previous"
+            app:backgroundTint="@color/Red_dark" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_songNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:srcCompat="@android:drawable/ic_media_next"/>
+            app:srcCompat="@android:drawable/ic_media_next"
+            app:backgroundTint="@color/Red_dark" />
 
     </android.support.design.widget.AppBarLayout>
 

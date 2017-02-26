@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.pez.audio_player_application.pojo.Album;
+import com.pez.audio_player_application.ui.fragments.DownloadAlbumInfo;
 
 //__________________________________________________________________________
 
@@ -18,8 +20,10 @@ import android.view.MenuItem;
  * TODO: ajouter la liste des chansons
  * TODO: lier les 3 fragments
  */
+
 public class MainActivity extends AppCompatActivity
 {
+    private DownloadAlbumInfo downloadAlbumInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,6 +32,13 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        downloadAlbumInfo = new DownloadAlbumInfo();
+        // TODO : Faire le retrieve APRES avoir récupéré les noms des fichiers
+        downloadAlbumInfo.retrieveAlbumsInfo(
+                new Album("Radiohead", "ok computer"),
+                new Album("Beck", "the information")
+        );
 
 
         FloatingActionButton fab_songPlay = (FloatingActionButton) findViewById(R.id.fab_songPlay);
