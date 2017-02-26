@@ -8,9 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.pez.audio_player_application.pojo.Album;
 import com.pez.audio_player_application.ui.fragments.DownloadAlbumInfo;
+import com.pez.audio_player_application.AudioPlayerApplication;
+
 
 //__________________________________________________________________________
 
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity
         );
 
 
+        // === Gestion des boutons ===
         FloatingActionButton fab_songPlay = (FloatingActionButton) findViewById(R.id.fab_songPlay);
         fab_songPlay.setOnClickListener(new View.OnClickListener()
         {
@@ -115,12 +119,22 @@ public class MainActivity extends AppCompatActivity
         //handle here : Share action
         if (id == R.id.actionShare)
         {
+            Toast.makeText(AudioPlayerApplication.getContext(), "Share listened song" , Toast.LENGTH_SHORT).show();
             return true;
         }
 
         //handle here : Kill action
         if (id == R.id.actionKill)
         {
+            Toast.makeText(AudioPlayerApplication.getContext(), "Kill application" , Toast.LENGTH_SHORT).show();
+            finish();
+            return true;
+        }
+
+        //handle here : Synchronize database action
+        if (id == R.id.actionSyncDB)
+        {
+            Toast.makeText(AudioPlayerApplication.getContext(), "Sync database" , Toast.LENGTH_SHORT).show();
             return true;
         }
 

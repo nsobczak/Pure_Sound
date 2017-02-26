@@ -10,11 +10,16 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.pez.audio_player_application.ui.fragments.MainActivityFragmentSongs"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    android:layout_alignParentTop="true">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Songs list fragment"/>
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>
