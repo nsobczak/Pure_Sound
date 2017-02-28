@@ -46,7 +46,7 @@
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab_songPlay"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/fab_width"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|left"
                     android:layout_margin="@dimen/fab_margin"
@@ -55,7 +55,7 @@
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab_songPause"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/fab_width"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_margin="@dimen/fab_margin"
@@ -67,7 +67,7 @@
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab_songPrevious"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/fab_width"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_margin="@dimen/fab_margin"
@@ -79,7 +79,7 @@
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab_songNext"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/fab_width"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_margin="@dimen/fab_margin"

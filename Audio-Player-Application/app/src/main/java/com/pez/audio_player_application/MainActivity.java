@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.pez.audio_player_application.adapters.TracksAdapter;
 import com.pez.audio_player_application.interfaces.TrackListener;
 import com.pez.audio_player_application.pojo.Album;
 import com.pez.audio_player_application.pojo.Track;
@@ -28,6 +29,8 @@ import com.pez.audio_player_application.ui.fragments.DownloadAlbumInfo;
 import com.pez.audio_player_application.ui.fragments.MainActivityFragmentSongs;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 //__________________________________________________________________________
@@ -38,12 +41,14 @@ import java.util.ArrayList;
  * TODO: ajouter la liste des chansons
  * TODO: lier les 3 fragments
  */
-
 public class MainActivity extends AppCompatActivity implements TrackListener
 {
     private DownloadAlbumInfo downloadAlbumInfo;
     private ArrayList<Track> songList;
     private ListView songView;
+
+
+    //__________________________________________________________________________
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     @Override
@@ -65,14 +70,14 @@ public class MainActivity extends AppCompatActivity implements TrackListener
             }
         }
 
-//        /* Gestion du fragment */
-//        //Create fragment transaction
-//        FragmentManager fragmentManager = getFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        //Add the fragment
-//        MainActivityFragmentSongs fragment = new MainActivityFragmentSongs();
-//        fragmentTransaction.add(R.id.layoutMainActivityContainer, fragment);
-//        fragmentTransaction.commit();
+        /* Gestion du fragment */
+        //Create fragment transaction
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        //Add the fragment
+        MainActivityFragmentSongs fragment = new MainActivityFragmentSongs();
+        fragmentTransaction.add(R.id.layoutMainActivityContainer, fragment);
+        fragmentTransaction.commit();
 
 
         //Lecture des chansons existantes
@@ -81,6 +86,19 @@ public class MainActivity extends AppCompatActivity implements TrackListener
         // TODO : Récupérer les noms des fichiers
         this.songList = new ArrayList<Track>();
         getSongList();
+
+        //trie des chansons par ordre alphabétique
+        Collections.sort(songList, new Comparator<Track>()
+        {
+            public int compare(Track trackA, Track trackB)
+            {
+                return trackA.getName().compareTo(trackB.getName());
+            }
+        });
+
+        TracksAdapter tracksAdapter = new TracksAdapter(this.songList);
+        this.songView.setAdapter(tracksAdapter);
+
 
         //Metadonnees
         downloadAlbumInfo = new DownloadAlbumInfo();
@@ -210,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements TrackListener
             while (trackCursor.moveToNext());
         }
 
-        Toast.makeText(AudioPlayerApplication.getContext(), "Tracks retrieved !", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(AudioPlayerApplication.getContext(), "Tracks retrieved !", Toast.LENGTH_SHORT).show();
 
     }
 

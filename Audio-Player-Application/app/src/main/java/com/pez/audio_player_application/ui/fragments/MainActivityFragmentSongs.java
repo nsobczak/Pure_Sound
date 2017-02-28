@@ -1,10 +1,10 @@
 package com.pez.audio_player_application.ui.fragments;
 
 import android.app.ActionBar;
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -17,9 +17,13 @@ import android.widget.ProgressBar;
 
 import com.pez.audio_player_application.MainActivity;
 import com.pez.audio_player_application.R;
+import com.pez.audio_player_application.adapters.TracksAdapter;
 import com.pez.audio_player_application.async.RetrieveTracksAsyncTask;
+import com.pez.audio_player_application.interfaces.TrackChangeListener;
 import com.pez.audio_player_application.interfaces.TrackListener;
 import com.pez.audio_player_application.pojo.Track;
+
+import java.util.List;
 
 
 //__________________________________________________________________________
@@ -27,7 +31,8 @@ import com.pez.audio_player_application.pojo.Track;
 /**
  * MainActivityFragmentSongs : A placeholder fragment containing a songs list view.
  */
-public class MainActivityFragmentSongs extends Fragment implements AdapterView.OnItemClickListener
+@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
+public class MainActivityFragmentSongs extends Fragment implements AdapterView.OnItemClickListener, TrackChangeListener
 {
     private RetrieveTracksAsyncTask retrieveTracksAsyncTask;
     private ListView songListView;
@@ -82,8 +87,24 @@ public class MainActivityFragmentSongs extends Fragment implements AdapterView.O
         return view;
     }
 
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+
+        this.retrieveTracksAsyncTask = new RetrieveTracksAsyncTask();
+        this.retrieveTracksAsyncTask.execute();
+    }
 
     //__________________________________________________________________________
+    @Override
+    public void onTrackRetrieved(List<Track> tracks)
+    {
+        final TracksAdapter tracksAdapter = new TracksAdapter(tracks);
+        this.songListView.setAdapter(tracksAdapter);
+    }
+
+
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
     {

@@ -25,6 +25,11 @@ public class Track {
         return name;
     }
 
+    public int getDuration()
+    {
+        return duration;
+    }
+
     public Track(JSONObject current_track) {
         try {
             if(current_track.has("name") && current_track.has("duration")) {
