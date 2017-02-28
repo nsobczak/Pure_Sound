@@ -1,6 +1,8 @@
 package com.pez.audio_player_application;
 
 import android.Manifest;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.ContentResolver;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -8,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -18,9 +21,11 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.pez.audio_player_application.interfaces.TrackListener;
 import com.pez.audio_player_application.pojo.Album;
 import com.pez.audio_player_application.pojo.Track;
 import com.pez.audio_player_application.ui.fragments.DownloadAlbumInfo;
+import com.pez.audio_player_application.ui.fragments.MainActivityFragmentSongs;
 
 import java.util.ArrayList;
 
@@ -34,12 +39,13 @@ import java.util.ArrayList;
  * TODO: lier les 3 fragments
  */
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements TrackListener
 {
     private DownloadAlbumInfo downloadAlbumInfo;
     private ArrayList<Track> songList;
     private ListView songView;
 
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Gestion des permissions
+        //Gestion des permissions pour pouvoir accéder aux chansons de la carte SD (l'ajout dan le manifest ne suffit pas)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -58,6 +64,16 @@ public class MainActivity extends AppCompatActivity
                 return;
             }
         }
+
+//        /* Gestion du fragment */
+//        //Create fragment transaction
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        //Add the fragment
+//        MainActivityFragmentSongs fragment = new MainActivityFragmentSongs();
+//        fragmentTransaction.add(R.id.layoutMainActivityContainer, fragment);
+//        fragmentTransaction.commit();
+
 
         //Lecture des chansons existantes
         this.songView = (ListView) findViewById(R.id.songsListLayout);
@@ -196,6 +212,15 @@ public class MainActivity extends AppCompatActivity
 
         Toast.makeText(AudioPlayerApplication.getContext(), "Tracks retrieved !", Toast.LENGTH_SHORT).show();
 
+    }
+
+
+    @Override
+    public void onViewTrack(Track track)
+    {
+        //TODO: lancer la 2ème activité sans lancer la chanson
+        Toast.makeText(AudioPlayerApplication.getContext(), "Lancement de la 2ème activité avec la chanson : " +
+                track.getName(), Toast.LENGTH_LONG).show();
     }
 
 

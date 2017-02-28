@@ -6,7 +6,8 @@ import android.content.Context;
 //__________________________________________________________________________
 
 /**
- * Created by nicolas on 26/02/17.
+ * @author nicolas
+ * @date 26/02/17.
  * AudioPlayerApplication
  */
 public class AudioPlayerApplication extends Application
