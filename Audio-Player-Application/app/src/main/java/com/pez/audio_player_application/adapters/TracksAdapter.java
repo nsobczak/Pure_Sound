@@ -96,7 +96,7 @@ public class TracksAdapter extends BaseAdapter
         //Get and set the current item
         final Track track = (Track) getItem(position);
         holder.title.setText(track.getName());
-        holder.duration.setText(String.valueOf(track.getDuration()));
+        holder.duration.setText(String.valueOf(track.getDuration()) + " s/ms?");
 
         //View with the right info
         return convertView;

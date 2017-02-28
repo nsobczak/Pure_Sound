@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layoutMainActivityContainer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TEST"/>
+    android:layout_height="match_parent">
 
     <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,13 +15,17 @@
         android:fitsSystemWindows="true"
         tools:context="com.pez.audio_player_application.MainActivity">
 
-        <include layout="@layout/content_main"/>
+        <include
+            layout="@layout/fragment_main_tracklist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/songAppBar"/>
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/songAppBar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="bottom"
             android:background="#7d5e50"
             android:theme="@style/AppTheme">
 
