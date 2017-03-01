@@ -21,6 +21,22 @@ public class AlbumDatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    private static AlbumDatabaseHelper instance;
+
+    public static synchronized AlbumDatabaseHelper getHelper(Context context) {
+        if (instance == null)
+            instance = new AlbumDatabaseHelper(context);
+        return instance;
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        if(!db.isReadOnly()) {
+            db.execSQL("PRAGMA foreign_keys=ON;");
+        }
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(AlbumDatabaseContract.CREATE_TABLE_ALBUMS);

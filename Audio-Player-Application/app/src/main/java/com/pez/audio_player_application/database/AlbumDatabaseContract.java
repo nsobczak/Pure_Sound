@@ -13,4 +13,5 @@ public class AlbumDatabaseContract implements BaseColumns {
 
     public static String ALBUM_TABLE = "album";
     public static String TRACK_TABLE = "track";
+
 }
