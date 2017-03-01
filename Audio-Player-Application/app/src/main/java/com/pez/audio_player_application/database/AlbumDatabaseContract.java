@@ -9,9 +9,7 @@ import android.provider.BaseColumns;
 public class AlbumDatabaseContract implements BaseColumns {
 
     public static String CREATE_TABLE_ALBUMS;
-    public static String CREATE_TABLE_TRACKS;
 
     public static String ALBUM_TABLE = "album";
-    public static String TRACK_TABLE = "track";
 
 }

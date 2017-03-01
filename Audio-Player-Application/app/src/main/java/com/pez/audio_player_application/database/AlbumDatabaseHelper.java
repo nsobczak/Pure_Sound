@@ -40,13 +40,11 @@ public class AlbumDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(AlbumDatabaseContract.CREATE_TABLE_ALBUMS);
-        db.execSQL(AlbumDatabaseContract.CREATE_TABLE_TRACKS);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + AlbumDatabaseContract.ALBUM_TABLE);
-        db.execSQL("DROP TABLE IF EXISTS " + AlbumDatabaseContract.TRACK_TABLE);
         onCreate(db);
     }
 }
