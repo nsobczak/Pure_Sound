@@ -5,6 +5,7 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
+import android.provider.BaseColumns;
 import android.support.annotation.RequiresApi;
 
 /**
@@ -12,7 +13,7 @@ import android.support.annotation.RequiresApi;
  * @Date 26/02/2017.
  */
 
-public class AlbumDatabaseHelper extends SQLiteOpenHelper {
+public class AlbumDatabaseHelper extends SQLiteOpenHelper implements BaseColumns {
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "AlbumsInfo.db";

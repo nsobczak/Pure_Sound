@@ -28,6 +28,12 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        
+        <provider
+            android:authorities="pez.audio_player_application.AlbumAuthority"
+            android:name="com.pez.audio_player_application.database.DatabaseProvider"
+            android:exported="false" />
+        
     </application>
 
 </manifest>
