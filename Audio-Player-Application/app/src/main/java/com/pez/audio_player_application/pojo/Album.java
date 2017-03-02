@@ -18,6 +18,10 @@ public class Album {
     private String cover_url;
     private List<Track> tracks;
 
+    public Album() {
+        this("","","","","");
+    }
+
     public Album(String artist, String title) {
         this(artist, title, "", "", "");
     }
@@ -30,6 +34,17 @@ public class Album {
         this.cover_url = cover_url;
     }
 
+    public List<Track> getTracks() {
+        return tracks;
+    }
+
+    public void setTracks(List<Track> tracks) {
+        this.tracks = tracks;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
 
     public String getArtist() {
         return artist;
@@ -62,6 +77,22 @@ public class Album {
     public String getTitle() {
         return title;
 
+    }
+
+    public void setMbid(String mbid) {
+        this.mbid = mbid;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setCoverUrl(String cover_url) {
+        this.cover_url = cover_url;
     }
 
     public String getMbid() {
