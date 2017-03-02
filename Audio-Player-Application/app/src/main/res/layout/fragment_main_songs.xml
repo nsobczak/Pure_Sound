@@ -10,7 +10,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.pez.audio_player_application.ui.fragments.MainActivityFragmentSongs">
+    tools:context="com.pez.audio_player_application.ui.fragments.MainActivityFragmentSongs"
+    android:background="@color/Red_dark"
+    android:layout_marginBottom="@dimen/appbar_margin_bottom">
 
     <ListView
         android:id="@+id/songsListLayout"

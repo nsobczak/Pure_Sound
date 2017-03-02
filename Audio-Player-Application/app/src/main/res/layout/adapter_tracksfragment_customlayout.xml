@@ -45,7 +45,8 @@
         android:layout_alignTop="@+id/TrackTitle"
         android:layout_alignParentRight="true"
         android:backgroundTint="@color/Red_dark"
-        android:focusable="false"
+
         app:srcCompat="@android:drawable/ic_media_play"/>
+    <!--android:focusable="false"-->
 
 </RelativeLayout>

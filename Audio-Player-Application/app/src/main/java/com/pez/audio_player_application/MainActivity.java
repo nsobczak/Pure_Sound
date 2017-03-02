@@ -44,12 +44,11 @@ import java.util.Comparator;
 public class MainActivity extends AppCompatActivity implements TrackListener
 {
     private DownloadAlbumInfo downloadAlbumInfo;
-    private ArrayList<Track> songList;
-    private ListView songView;
+//    private ArrayList<Track> songList;
+//    private ListView songView;
 
 
     //__________________________________________________________________________
-
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -71,36 +70,26 @@ public class MainActivity extends AppCompatActivity implements TrackListener
         }
 
         /* Gestion du fragment */
-        //Create fragment transaction
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        //Add the fragment
-        MainActivityFragmentSongs fragment = new MainActivityFragmentSongs();
-        fragmentTransaction.add(R.id.layoutMainActivityContainer, fragment);
-        fragmentTransaction.commit();
-
-
-        //Lecture des chansons existantes
-        this.songView = (ListView) findViewById(R.id.songsListLayout);
-
-        // TODO : Récupérer les noms des fichiers
-        this.songList = new ArrayList<Track>();
-        getSongList();
-
-        //trie des chansons par ordre alphabétique
-        Collections.sort(songList, new Comparator<Track>()
+        if (savedInstanceState == null)
         {
-            public int compare(Track trackA, Track trackB)
-            {
-                return trackA.getName().compareTo(trackB.getName());
-            }
-        });
+            //Create fragment transaction
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            //Add the fragment
+            MainActivityFragmentSongs fragment = new MainActivityFragmentSongs();
+            fragmentTransaction.add(R.id.layoutMainActivityContainer, fragment);
+            fragmentTransaction.commit();
+        }
 
-        TracksAdapter tracksAdapter = new TracksAdapter(this.songList);
-        this.songView.setAdapter(tracksAdapter);
+//        //Lecture des chansons existantes
+//        this.songView = (ListView) findViewById(R.id.songsListLayout);
+//        this.songList = new ArrayList<Track>();
+//        getSongList();
+//        TracksAdapter tracksAdapter = new TracksAdapter(this.songList);
+//        this.songView.setAdapter(tracksAdapter);
 
 
-        //Metadonnees
+        // === Metadonnees ===
         downloadAlbumInfo = new DownloadAlbumInfo();
         // TODO : Faire le retrieve APRES avoir récupéré les noms des fichiers
         downloadAlbumInfo.retrieveAlbumsInfo(
@@ -207,32 +196,6 @@ public class MainActivity extends AppCompatActivity implements TrackListener
     }
 
     //__________________________________________________________________________
-
-    public void getSongList()
-    {
-        //retrieve song info
-        ContentResolver musicResolver = getContentResolver();
-        Uri musicUri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        Cursor trackCursor = musicResolver.query(musicUri, null, null, null, null);
-
-        if (trackCursor != null && trackCursor.moveToFirst())
-        {
-            //get columns indexes
-            int titleColumn = trackCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.TITLE);
-            int durationColumn = trackCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.DURATION);
-            //add songs to list
-            do
-            {
-                this.songList.add(new Track(trackCursor.getString(titleColumn), trackCursor.getInt(durationColumn)));
-            }
-            while (trackCursor.moveToNext());
-        }
-
-//        Toast.makeText(AudioPlayerApplication.getContext(), "Tracks retrieved !", Toast.LENGTH_SHORT).show();
-
-    }
-
-
     @Override
     public void onViewTrack(Track track)
     {

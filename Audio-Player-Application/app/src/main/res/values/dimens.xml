@@ -3,6 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!--songAppBar-->
+    <dimen name="appbar_margin_bottom">120dp</dimen>
+    <dimen name="appbar_toolbar_margin_bottom">40dp</dimen>
     <!--fab-->
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="fab_width">46dp</dimen>
