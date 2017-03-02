@@ -18,10 +18,10 @@
 
     <TextView
         android:id="@+id/TrackTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/custom_tracks_adapter_TrackTitle_width"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
         android:contentDescription="TrackTitle"
         android:fontFamily="cursive"
         android:textColor="@android:color/white"/>
@@ -31,20 +31,22 @@
         android:id="@+id/TrackDuration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_toLeftOf="@+id/Play_button"
         android:layout_toRightOf="@+id/TrackTitle"
         android:contentDescription="TrackDuration"
         android:fontFamily="sans-serif"
+        android:gravity="end|center_vertical"
         android:paddingLeft="@dimen/custom_tracks_adapter_TrackDuration_padding_left"
         android:textAlignment="textEnd"
         android:textColor="@android:color/white"/>
 
     <ImageButton
         android:id="@+id/Play_button"
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/TrackTitle"
+        android:layout_centerInParent="true"
         android:backgroundTint="@color/Red_dark"
         app:srcCompat="@android:drawable/ic_media_play"/>
     <!--android:focusable="false"-->
