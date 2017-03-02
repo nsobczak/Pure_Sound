@@ -38,7 +38,7 @@ import java.util.List;
  * MainActivityFragmentSongs : A placeholder fragment containing a songs list view.
  */
 @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
-public class MainActivityFragmentSongs extends Fragment implements AdapterView.OnItemClickListener, TrackChangeListener
+public class MainActivityFragmentSongs extends Fragment implements TrackChangeListener, AdapterView.OnItemClickListener
 {
     private RetrieveTracksAsyncTask retrieveTracksAsyncTask;
     private ListView songListView;
@@ -48,7 +48,6 @@ public class MainActivityFragmentSongs extends Fragment implements AdapterView.O
     //__________________________________________________________________________
     public MainActivityFragmentSongs()
     {
-        Log.e("FragmentSongs", "MainActivityFragmentSongs: ");
     }
 
     /**
@@ -90,7 +89,6 @@ public class MainActivityFragmentSongs extends Fragment implements AdapterView.O
 
         //add a listener when an item is clicked
         this.songListView.setOnItemClickListener(this);
-        Log.d("FragmentSongs", "onCreateView: " + this.songListView);
 
         return view;
     }
@@ -123,7 +121,6 @@ public class MainActivityFragmentSongs extends Fragment implements AdapterView.O
 
         final TracksAdapter tracksAdapter = new TracksAdapter(tracks);
         this.songListView.setAdapter(tracksAdapter);
-        Log.d("FragmentSongs", "onTrackRetrieved: ");
         Toast.makeText(AudioPlayerApplication.getContext(), "Tracks retrieved !", Toast.LENGTH_SHORT).show();
 
         this.retrieveTracksAsyncTask = null;

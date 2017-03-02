@@ -30,7 +30,7 @@ public class RetrieveTracksAsyncTask extends AsyncTask<Track, Void, List<Track>>
     @Override
     protected List<Track> doInBackground(Track... tracks)
     {
-        Log.d("TrackAsyncTask", "doInBackground: ");
+        Log.d("TrackAsyncTask", "doInBackground: retrieving tracks...");
         return RetrieveTrackHelper.getSongList();
     }
 

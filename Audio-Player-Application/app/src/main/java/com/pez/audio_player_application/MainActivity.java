@@ -57,8 +57,6 @@ public class MainActivity extends AppCompatActivity implements TrackListener
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Log.d("MainActivity", "onCreate: coucou");
-
 
         //Gestion des permissions pour pouvoir accéder aux chansons de la carte SD (l'ajout dan le manifest ne suffit pas)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
@@ -70,19 +68,6 @@ public class MainActivity extends AppCompatActivity implements TrackListener
                 return;
             }
         }
-
-        // TODO : Voir ce qui crée le fragment parce qu'apparemment la partie suivante n'est pas utile
-//        // === Gestion du fragment de la liste des chansons ===
-//        if (savedInstanceState == null)
-//        {
-//            //Create fragment transaction
-//            FragmentManager fragmentManager = getFragmentManager();
-//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            //Add the fragment
-//            MainActivityFragmentSongs fragment = new MainActivityFragmentSongs();
-//            fragmentTransaction.add(R.id.layoutMainActivityContainer, fragment);
-//            fragmentTransaction.commit();
-//        }
 
 
         // === Metadonnees ===
@@ -196,8 +181,9 @@ public class MainActivity extends AppCompatActivity implements TrackListener
     public void onViewTrack(Track track)
     {
         //TODO: lancer la 2ème activité sans lancer la chanson
+
         Toast.makeText(AudioPlayerApplication.getContext(), "Lancement de la 2ème activité avec la chanson : " +
-                track.getName(), Toast.LENGTH_LONG).show();
+                track.getName() + " passée en paramètre.", Toast.LENGTH_LONG).show();
     }
 
 
