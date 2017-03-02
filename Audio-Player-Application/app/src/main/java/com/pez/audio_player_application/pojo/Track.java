@@ -3,6 +3,9 @@ package com.pez.audio_player_application.pojo;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+//__________________________________________________________________________
+
 /**
  * @Auteur Baudouin
  * @Date 15/02/2017.
@@ -15,6 +18,16 @@ public class Track {
     public Track(String name, int duration) {
         this.name = name;
         this.duration = duration;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public int getDuration()
+    {
+        return duration;
     }
 
     public Track(JSONObject current_track) {

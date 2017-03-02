@@ -14,4 +14,11 @@
         android:showAsAction="never"
         android:title="@string/action_kill"/>
 
+    <item
+        android:id="@+id/actionSyncDB"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_actionSyncDB"/>
+
+
 </menu>
