@@ -48,6 +48,7 @@ public class MainActivityFragmentSongs extends Fragment implements AdapterView.O
     //__________________________________________________________________________
     public MainActivityFragmentSongs()
     {
+        Log.e("FragmentSongs", "MainActivityFragmentSongs: ");
     }
 
     /**
