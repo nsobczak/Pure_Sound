@@ -11,7 +11,6 @@ import org.json.JSONObject;
  * @Date 15/02/2017.
  */
 public class Track {
-
     private String name;
     private int duration;
 

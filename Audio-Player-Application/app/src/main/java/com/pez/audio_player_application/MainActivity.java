@@ -217,6 +217,7 @@ public class MainActivity extends AppCompatActivity implements TrackListener
 
         if (trackCursor != null && trackCursor.moveToFirst())
         {
+
             //get columns indexes
             int titleColumn = trackCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.TITLE);
             int durationColumn = trackCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.DURATION);
@@ -239,6 +240,7 @@ public class MainActivity extends AppCompatActivity implements TrackListener
         //TODO: lancer la 2ème activité sans lancer la chanson
         Toast.makeText(AudioPlayerApplication.getContext(), "Lancement de la 2ème activité avec la chanson : " +
                 track.getName(), Toast.LENGTH_LONG).show();
+
     }
 
 
