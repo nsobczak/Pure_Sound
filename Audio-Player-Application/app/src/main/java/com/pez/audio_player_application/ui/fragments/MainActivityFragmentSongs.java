@@ -123,6 +123,7 @@ public class MainActivityFragmentSongs extends Fragment implements TrackChangeLi
         this.songListView.setAdapter(tracksAdapter);
         Toast.makeText(AudioPlayerApplication.getContext(), "Tracks retrieved !", Toast.LENGTH_SHORT).show();
 
+        this.retrieveTracksAsyncTask.cancel(true);
         this.retrieveTracksAsyncTask = null;
     }
 
