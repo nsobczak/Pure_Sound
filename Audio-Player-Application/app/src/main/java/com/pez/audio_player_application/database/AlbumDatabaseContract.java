@@ -30,7 +30,7 @@ public class AlbumDatabaseContract implements BaseColumns {
             TITLE + " TEXT NOT NULL, " +
             MBID + " TEXT NOT NULL, " +
             URL + " TEXT NOT NULL, " +
-            TRACKS + " VARCHAR NOT NULL, " +
+            TRACKS + " VARCHAR, " +
             COVER_URL + " VARCHAR NOT NULL)";
     public static String CREATE_TABLE_ALBUMS = CREATE_TABLE_IF_NOT_EXIST + ALBUM_TABLE + ALBUM_TABLE_SUFFIX;
     public static String DELETE_ALBUM_MBID_EQUALS = MBID + " = ?";
@@ -46,6 +46,7 @@ public class AlbumDatabaseContract implements BaseColumns {
             TRACKS,
             COVER_URL
     };
+
 
 
 }

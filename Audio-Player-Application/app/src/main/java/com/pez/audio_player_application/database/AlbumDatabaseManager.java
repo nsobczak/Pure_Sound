@@ -1,8 +1,11 @@
 package com.pez.audio_player_application.database;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.pez.audio_player_application.AudioPlayerApplication;
 import com.pez.audio_player_application.MainActivity;
@@ -29,8 +32,10 @@ public class AlbumDatabaseManager {
             album.setTracks(new ArrayList<Track>());
 
             // artist
-            if(c.getColumnIndex(AlbumDatabaseContract.ARTIST) >= 0) {
-                album.setArtist(c.getString(c.getColumnIndex(AlbumDatabaseContract.ARTIST)));
+            int artist_index = c.getColumnIndex(AlbumDatabaseContract.ARTIST);
+            if(artist_index >= 0) {
+                String artist_name = c.getString(artist_index);
+                album.setArtist(artist_name);
             }
 
             // title
@@ -90,13 +95,28 @@ public class AlbumDatabaseManager {
     }
 
     public static void saveAlbum(Album album) {
-        final ContentValues contentValues = albumToContentValues(album);
-        AudioPlayerApplication.getContext().getContentResolver().insert(AlbumDatabaseContract.ALBUM_META_URI, contentValues);
+        try {
+            final ContentValues contentValues = albumToContentValues(album);
+            AudioPlayerApplication.getContext().getContentResolver().insert(AlbumDatabaseContract.ALBUM_META_URI, contentValues);
+        }
+        catch(Exception e) {
+            Log.e("", e.getMessage());
+        }
     }
 
     public static void deleteAlbum(Album album) {
         AudioPlayerApplication.getContext().getContentResolver().delete(AlbumDatabaseContract.ALBUM_META_URI,
                 AlbumDatabaseContract.DELETE_ALBUM_MBID_EQUALS, new String[] { album.getMbid() });
+    }
+
+    public static void testContentProvider() {
+        Context context = AudioPlayerApplication.getContext();
+        if (context != null) {
+            Cursor cursor = context.getContentResolver().query(AlbumDatabaseContract.ALBUM_META_URI,
+                    AlbumDatabaseContract.PROJECTION_FULL, null, null, null);
+            Album albumtest = AlbumDatabaseManager.albumFromCursor(cursor);
+            Log.i("manager", "ok");
+        }
     }
 
 }

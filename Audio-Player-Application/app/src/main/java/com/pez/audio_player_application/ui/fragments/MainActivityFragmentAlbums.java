@@ -2,6 +2,7 @@ package com.pez.audio_player_application.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class MainActivityFragmentAlbums extends Fragment implements AlbumInfoCha
         for(Album album : albums)
             AlbumDatabaseManager.saveAlbum(album);
 
+        AlbumDatabaseManager.testContentProvider();
     }
 
 }
