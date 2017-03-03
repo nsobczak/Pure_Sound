@@ -71,7 +71,7 @@ public class AlbumDatabaseManager {
     }
 
     public static ContentValues albumToContentValues(Album album) {
-        
+
         return null; // TODO
     }
 
