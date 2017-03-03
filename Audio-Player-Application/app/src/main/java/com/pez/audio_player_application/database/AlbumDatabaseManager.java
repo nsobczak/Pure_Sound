@@ -2,6 +2,7 @@ package com.pez.audio_player_application.database;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.text.TextUtils;
 
 import com.pez.audio_player_application.pojo.Album;
 import com.pez.audio_player_application.pojo.Track;
@@ -9,6 +10,7 @@ import com.pez.audio_player_application.pojo.Track;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -71,8 +73,19 @@ public class AlbumDatabaseManager {
     }
 
     public static ContentValues albumToContentValues(Album album) {
+        final ContentValues values = new ContentValues();
 
-        return null; // TODO
+        if(!TextUtils.isEmpty(album.getArtist())) {
+            values.put(AlbumDatabaseContract.ARTIST, album.getArtist());
+        }
+
+        values.put(AlbumDatabaseContract.TITLE, album.getTitle());
+        values.put(AlbumDatabaseContract.MBID, album.getMbid());
+        values.put(AlbumDatabaseContract.URL, album.getUrl());
+        // TODO : tracks !
+        values.put(AlbumDatabaseContract.COVER_URL, album.getCoverUrl());
+
+        return values;
     }
 
 }

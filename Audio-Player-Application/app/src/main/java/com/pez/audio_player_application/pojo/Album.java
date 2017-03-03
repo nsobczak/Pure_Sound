@@ -76,6 +76,10 @@ public class Album {
 
     }
 
+    public String getCoverUrl() {
+        return this.cover_url;
+    }
+
     public void setMbid(String mbid) {
         this.mbid = mbid;
     }
