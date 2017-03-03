@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.text.TextUtils;
 
+import com.pez.audio_player_application.AudioPlayerApplication;
 import com.pez.audio_player_application.MainActivity;
 import com.pez.audio_player_application.pojo.Album;
 import com.pez.audio_player_application.pojo.Track;
@@ -89,8 +90,13 @@ public class AlbumDatabaseManager {
     }
 
     public static void saveAlbum(Album album) {
-        final ContentValues cvAlbum = albumToContentValues(album);
-        
+        final ContentValues contentValues = albumToContentValues(album);
+        AudioPlayerApplication.getContext().getContentResolver().insert(AlbumDatabaseContract.ALBUM_META_URI, contentValues);
+    }
+
+    public static void deleteAlbum(Album album) {
+        AudioPlayerApplication.getContext().getContentResolver().delete(AlbumDatabaseContract.ALBUM_META_URI,
+                AlbumDatabaseContract.DELETE_ALBUM_MBID_EQUALS, new String[] { album.getMbid() });
     }
 
 }

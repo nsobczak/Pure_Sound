@@ -33,12 +33,12 @@ public class AlbumDatabaseContract implements BaseColumns {
             TRACKS + " VARCHAR NOT NULL, " +
             COVER_URL + " VARCHAR NOT NULL)";
     public static String CREATE_TABLE_ALBUMS = CREATE_TABLE_IF_NOT_EXIST + ALBUM_TABLE + ALBUM_TABLE_SUFFIX;
+    public static String DELETE_ALBUM_MBID_EQUALS = MBID + " = ?";
 
     public static String ALBUMS_CONTENT_TYPE = "vnd.android.cursor.dir/vnd.metadata.albums";
     public static String ALBUM_DETAIL_CONTENT_TYPE = "vnd.android.cursor.dir/vnd.metadata.album_detail";
 
     public static final String[] PROJECTION_FULL = new String[]{
-            _ID,
             ARTIST,
             TITLE,
             MBID,
