@@ -4,13 +4,13 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.text.TextUtils;
 
+import com.pez.audio_player_application.MainActivity;
 import com.pez.audio_player_application.pojo.Album;
 import com.pez.audio_player_application.pojo.Track;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -86,6 +86,11 @@ public class AlbumDatabaseManager {
         values.put(AlbumDatabaseContract.COVER_URL, album.getCoverUrl());
 
         return values;
+    }
+
+    public static void saveAlbum(Album album) {
+        final ContentValues cvAlbum = albumToContentValues(album);
+        
     }
 
 }

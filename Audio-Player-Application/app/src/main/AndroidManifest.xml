@@ -32,8 +32,12 @@
         <provider
             android:authorities="pez.audio_player_application.AlbumAuthority"
             android:name="com.pez.audio_player_application.database.DatabaseProvider"
-            android:exported="false" />
-        
+            android:exported="false" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
     </application>
 
 </manifest>

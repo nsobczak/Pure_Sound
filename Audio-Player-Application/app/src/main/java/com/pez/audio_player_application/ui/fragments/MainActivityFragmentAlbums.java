@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.pez.audio_player_application.R;
 import com.pez.audio_player_application.async.RetrieveAlbumInfoAsyncTask;
+import com.pez.audio_player_application.database.AlbumDatabaseManager;
 import com.pez.audio_player_application.interfaces.AlbumInfoChangeListener;
 import com.pez.audio_player_application.pojo.Album;
 
@@ -30,7 +31,10 @@ public class MainActivityFragmentAlbums extends Fragment implements AlbumInfoCha
 
     @Override
     public void onAlbumInfoRetrieved(List<Album> albums) {
-        // TODO
+        // TODO -- To finish : send a signal to the activity in order to refresh the covers
+        for(Album album : albums)
+            AlbumDatabaseManager.saveAlbum(album);
+
     }
 
 }
