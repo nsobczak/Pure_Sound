@@ -9,6 +9,7 @@
                 android:layout_marginLeft="@dimen/custom_tracks_adapter_margin_left"
                 android:layout_marginRight="@dimen/custom_tracks_adapter_margin_right"
                 android:background="@android:color/darker_gray"
+                android:descendantFocusability="blocksDescendants"
                 android:paddingBottom="@dimen/custom_tracks_adapter_padding_bottom"
                 android:paddingLeft="@dimen/custom_tracks_adapter_padding_left"
                 android:paddingRight="@dimen/custom_tracks_adapter_padding_right"
@@ -17,35 +18,48 @@
 
     <TextView
         android:id="@+id/TrackTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/custom_tracks_adapter_TrackTitle_width"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:contentDescription="TrackTitle"
-        android:textColor="@android:color/white"
-        android:fontFamily="cursive"/>
+        android:fontFamily="cursive"
+        android:textColor="@android:color/white"/>
 
+    <TextView
+        android:id="@+id/TrackArtist"
+        android:layout_width="@dimen/custom_tracks_adapter_TrackTitle_width"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/TrackTitle"
+        android:contentDescription="TrackArtist"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"/>
 
     <TextView
         android:id="@+id/TrackDuration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_toLeftOf="@+id/Play_button"
         android:layout_toRightOf="@+id/TrackTitle"
         android:contentDescription="TrackDuration"
+        android:fontFamily="sans-serif"
+        android:gravity="end|center_vertical"
         android:paddingLeft="@dimen/custom_tracks_adapter_TrackDuration_padding_left"
-        android:textColor="@android:color/white"
         android:textAlignment="textEnd"
-        android:fontFamily="sans-serif"/>
+        android:textColor="@android:color/white"/>
 
     <ImageButton
         android:id="@+id/Play_button"
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/TrackTitle"
         android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
         android:backgroundTint="@color/Red_dark"
-        android:focusable="false"
         app:srcCompat="@android:drawable/ic_media_play"/>
+    <!--android:focusable="false"-->
+
 
 </RelativeLayout>

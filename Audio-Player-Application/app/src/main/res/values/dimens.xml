@@ -3,6 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!--songAppBar-->
+    <dimen name="appbar_margin_bottom">120dp</dimen>
+    <dimen name="appbar_toolbar_margin_bottom">40dp</dimen>
     <!--fab-->
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="fab_width">46dp</dimen>
@@ -14,6 +17,7 @@
     <dimen name="custom_tracks_adapter_padding_left">8dp</dimen>
     <dimen name="custom_tracks_adapter_padding_top">1dp</dimen>
     <dimen name="custom_tracks_adapter_padding_bottom">2dp</dimen>
+    <dimen name="custom_tracks_adapter_TrackTitle_width">200dp</dimen>
     <dimen name="custom_tracks_adapter_TrackDuration_padding_left">6dp</dimen>
 
 

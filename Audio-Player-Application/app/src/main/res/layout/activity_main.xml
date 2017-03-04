@@ -32,7 +32,7 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="@dimen/appbar_toolbar_margin_bottom"
                 android:background="#cfab82"
                 app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
