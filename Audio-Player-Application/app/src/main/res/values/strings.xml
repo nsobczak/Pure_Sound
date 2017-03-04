@@ -1,6 +1,6 @@
 <resources>
     <!-- APPLICATION -->
-    <string name="app_name">Audio-Player-Application</string>
+    <string name="app_name">Pure Sound</string>
     <string name="action_settings">Settings</string>
     <string name="activity_main">Main-Activity</string>
     <string name="activity_songDetails">Song-Details-Activity</string>
@@ -10,18 +10,5 @@
     <string name="action_share">Share</string>
     <string name="action_kill">Kill</string>
     <string name="action_actionSyncDB">Sync Database</string>
-
-    <!--&lt;!&ndash; LOGIN &ndash;&gt;-->
-    <!--<string name="loginHint">Your Twitter login</string>-->
-    <!--<string name="passwordHint">Your Twitter password</string>-->
-    <!--<string name="login">Sign in</string>-->
-    <!--<string name="error_no_login">Empty login !</string>-->
-    <!--<string name="error_no_password">Empty password !</string>-->
-    <!--<string name="action_settings">Title!</string>-->
-
-    <!--&lt;!&ndash; Fragment tweet &ndash;&gt;-->
-    <!--<string name="tweet_reply">Reply</string>-->
-    <!--<string name="tweet_retweet">Retweet</string>-->
-    <!--<string name="tweet_star">Star</string>-->
 
 </resources>
