@@ -39,8 +39,8 @@ import java.util.Comparator;
 /**
  * MainActivity : activity_01
  * TODO: Faire un lien vers la 2ème activité quand on clique sur une chanson
- * TODO: ajouter la liste des chansons
  * TODO: lier les 3 fragments
+ * TODO: lier metadonnées et chansons
  */
 public class MainActivity extends AppCompatActivity implements TrackListener
 {

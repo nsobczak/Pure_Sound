@@ -36,4 +36,17 @@ public class MainActivityFragmentAlbums extends Fragment implements AlbumInfoCha
         // TODO
     }
 
+
+        //TODO: tri des albums par ordre alphabétique
+//    if (albums != null)
+//    {
+//        Collections.sort(albums, new Comparator<Album>()
+//        {
+//            public int compare(Album albumA, Album albumB)
+//            {
+//                return albumA.getTitle().compareTo(albumB.getTitle());
+//            }
+//        });
+//    }
+
 }
