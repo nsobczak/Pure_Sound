@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements TrackListener {
     public static MediaPlayer getMediaPlayer(){
         return mediaPlayer;
     }
-
     //__________________________________________________________________________
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)

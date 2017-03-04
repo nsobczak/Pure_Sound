@@ -27,9 +27,11 @@ public class PlayActivity extends Activity {
                 try{
                     String url = "/storage/extSdCard/Download/apsco-1.mp3"; // your URL here
                     MediaPlayer mediaPlayer = MainActivity.getMediaPlayer();
+                    mediaPlayer.reset();
                     mediaPlayer.setDataSource(url);
                     mediaPlayer.prepare(); // might take long! (for buffering, etc)
                     mediaPlayer.start();
+
                 }
                 catch(IOException e){
 
