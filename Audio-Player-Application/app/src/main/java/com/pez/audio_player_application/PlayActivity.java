@@ -13,10 +13,6 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-/**
- * Created by Antoine on 02/03/2017.
- */
-
 public class PlayActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,9 +25,8 @@ public class PlayActivity extends Activity {
         {
             public void onClick(View arg0) {
                 try{
-                    String url = "https://dl.dropboxusercontent.com/u/69344277/09%20Celebration.mp3"; // your URL here
-                    MediaPlayer mediaPlayer = new MediaPlayer();
-                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    String url = "/storage/extSdCard/Download/apsco-1.mp3"; // your URL here
+                    MediaPlayer mediaPlayer = MainActivity.getMediaPlayer();
                     mediaPlayer.setDataSource(url);
                     mediaPlayer.prepare(); // might take long! (for buffering, etc)
                     mediaPlayer.start();

@@ -9,7 +9,7 @@ public class Queue {
 
     public Queue() {
         this.tracks = new ArrayList<Track>();
-        this.currentTrackIndex = 0;
+        this.currentTrackIndex = -1;
     }
 
     public void addTracks(Track track) {
@@ -20,6 +20,10 @@ public class Queue {
         for (Track track : album.getTracks()) {
             this.tracks.add(track);
         }
+    }
+
+    public void setCurrentTrackIndex(int currentTrackIndex) {
+        this.currentTrackIndex = currentTrackIndex;
     }
 
     public ArrayList<Track> getTracks() {
