@@ -3,6 +3,7 @@ package com.pez.audio_player_application.helpers;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.MediaStore;
 
 import com.pez.audio_player_application.AudioPlayerApplication;
 import com.pez.audio_player_application.pojo.Track;
@@ -31,12 +32,17 @@ public class RetrieveTrackHelper
         if (trackCursor != null && trackCursor.moveToFirst())
         {
             //get columns indexes
-            int titleColumn = trackCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.TITLE);
-            int durationColumn = trackCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.DURATION);
+            int titleColumn = trackCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
+            int artistColumn = trackCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
+            int albumColumn = trackCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
+            int durationColumn = trackCursor.getColumnIndex(MediaStore.Audio.Media.DURATION);
             //add songs to list
             do
             {
-                resultSongList.add(new Track(trackCursor.getString(titleColumn), trackCursor.getInt(durationColumn)));
+                resultSongList.add(new Track(trackCursor.getString(titleColumn),
+                        trackCursor.getString(artistColumn),
+                        trackCursor.getString(albumColumn),
+                        trackCursor.getInt(durationColumn)));
             }
             while (trackCursor.moveToNext());
         }
