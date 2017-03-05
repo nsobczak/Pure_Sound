@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements TrackListener {
                 new Album("Radiohead", "ok computer"),
                 new Album("Beck", "the information")
         );
-        
+
         // === Gestion des boutons ===
         FloatingActionButton fab_songPlay = (FloatingActionButton) findViewById(R.id.fab_songPlay);
         fab_songPlay.setOnClickListener(new View.OnClickListener() {
