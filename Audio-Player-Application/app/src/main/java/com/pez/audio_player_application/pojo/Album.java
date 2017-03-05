@@ -104,4 +104,8 @@ public class Album {
         return url;
     }
 
+    @Override
+    public String toString() {
+        return getTitle() + " by " + getArtist();
+    }
 }

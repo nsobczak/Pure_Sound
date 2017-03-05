@@ -79,8 +79,12 @@ public class AlbumDatabaseManager {
 
     public static void saveAlbum(Album album) {
         try {
-            final ContentValues contentValues = albumToContentValues(album);
-            AudioPlayerApplication.getContext().getContentResolver().insert(AlbumDatabaseContract.ALBUM_META_URI, contentValues);
+            // We will not insert the album twice
+            if(getAlbumFromDatabase(album.getTitle(), album.getArtist()) == null) {
+                final ContentValues contentValues = albumToContentValues(album);
+                AudioPlayerApplication.getContext().getContentResolver().insert(AlbumDatabaseContract.ALBUM_META_URI, contentValues);
+                Log.i("AlbumDatabaseManager", "Successful insertion of the album: " + album.toString());
+            }
         } catch (Exception e) {
             Log.e("", e.getMessage());
         }
@@ -107,14 +111,13 @@ public class AlbumDatabaseManager {
     }
 
     public static void testContentProvider() {
-        getAlbumFromDatabase("Radiohead", "OK Computer");
         Context context = AudioPlayerApplication.getContext();
         if (context != null) {
             Cursor cursor = context.getContentResolver().query(AlbumDatabaseContract.ALBUM_META_URI,
                     AlbumDatabaseContract.PROJECTION_FULL, null, null, null);
             while (cursor.moveToNext()) {
-                Album albumtest = AlbumDatabaseManager.albumFromCursor(cursor);
-                Log.i("manager", "ok");
+                Album album = AlbumDatabaseManager.albumFromCursor(cursor);
+                Log.i("AlbumDatabaseManager", "Retrieved 1 album: " + album.toString());
             }
         }
     }

@@ -50,7 +50,7 @@ public class AlbumDatabaseContract implements BaseColumns {
             TITLE,
             COVER_URL
     };
-    public static final String COVER_URL_CLAUSE = ARTIST + "= ? AND " + TITLE + "= ?";
+    public static final String COVER_URL_CLAUSE = TITLE + "= ? AND " + ARTIST + "= ?";
 
 
 
