@@ -33,6 +33,7 @@ public class MainActivityFragmentAlbums extends Fragment implements AlbumInfoCha
     @Override
     public void onAlbumInfoRetrieved(List<Album> albums) {
         // TODO -- To finish : send a signal to the activity in order to refresh the covers
+        // TODO -- Clean the databse before insert the new albums in it
         for(Album album : albums)
             AlbumDatabaseManager.saveAlbum(album);
 
