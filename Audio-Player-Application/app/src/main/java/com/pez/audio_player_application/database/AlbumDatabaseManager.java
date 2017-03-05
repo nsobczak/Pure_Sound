@@ -99,7 +99,7 @@ public class AlbumDatabaseManager {
         Context context = AudioPlayerApplication.getContext();
         if (context != null && !TextUtils.isEmpty(albumName) && !TextUtils.isEmpty(artistName)) {
             Cursor albumCursor = context.getContentResolver().query(AlbumDatabaseContract.ALBUM_META_URI,
-                    AlbumDatabaseContract.PROJECTION_COVER,
+                    AlbumDatabaseContract.PROJECTION_FULL,
                     AlbumDatabaseContract.COVER_URL_CLAUSE,
                     new String[] { albumName, artistName },
                     null

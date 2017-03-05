@@ -45,11 +45,6 @@ public class AlbumDatabaseContract implements BaseColumns {
             COVER_URL
     };
 
-    public static final String[] PROJECTION_COVER = new String[]{
-            ARTIST,
-            TITLE,
-            COVER_URL
-    };
     public static final String COVER_URL_CLAUSE = TITLE + "= ? AND " + ARTIST + "= ?";
 
 
