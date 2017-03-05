@@ -3,6 +3,7 @@ package com.pez.audio_player_application.ui.fragments;
 import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,4 +31,19 @@ public class MainActivityFragmentArtists extends Fragment
     {
         return inflater.inflate(R.layout.fragment_main_artists, container, false);
     }
+
+
+    //TODO: tri des artistes par ordre alphabétique
+//    if (artists != null)
+//    {
+//        Collections.sort(artists, new Comparator<MediaStore.Audio.Artists>()
+//        {
+//            public int compare(MediaStore.Audio.Artists artistA, MediaStore.Audio.Artists artistB)
+//            {
+//                return artistA.getClass().getName().compareTo(artistB.getClass().getName());
+//            }
+//        });
+//    }
+
+
 }

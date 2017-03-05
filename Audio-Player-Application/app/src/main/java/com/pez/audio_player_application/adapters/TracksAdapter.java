@@ -1,14 +1,9 @@
 package com.pez.audio_player_application.adapters;
 
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.pez.audio_player_application.AudioPlayerApplication;
 import com.pez.audio_player_application.R;
@@ -81,22 +76,23 @@ public class TracksAdapter extends BaseAdapter
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup)
     {
-        ViewHolder holder;
+        TracksAdapterViewHolder holder;
 
         if (convertView == null)
         {
             convertView = this.layoutInflater.inflate(R.layout.adapter_tracksfragment_customlayout, null);
-            holder = new ViewHolder(convertView);
+            holder = new TracksAdapterViewHolder(convertView);
             convertView.setTag(holder);
         } else
         {
-            holder = (ViewHolder) convertView.getTag();
+            holder = (TracksAdapterViewHolder) convertView.getTag();
         }
 
         //Get and set the current item
         final Track track = (Track) getItem(position);
         holder.title.setText(track.getName());
-        holder.duration.setText(String.valueOf(track.getDuration()) + " s/ms?");
+        holder.artist.setText(track.getArtist());
+        holder.duration.setText(track.getConvertedDuration());
 
         //View with the right info
         return convertView;
