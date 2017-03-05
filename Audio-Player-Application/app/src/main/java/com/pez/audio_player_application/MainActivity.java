@@ -49,13 +49,15 @@ public class MainActivity extends AppCompatActivity implements TrackListener {
     private DownloadAlbumInfo downloadAlbumInfo;
     private ArrayList<Track> songList;
     private ListView songView;
+
     private static Queue playQueue = new Queue();
     private static MediaPlayer mediaPlayer = new MediaPlayer();
 
-    public static Queue getPlayQueue(){
+    public static Queue getPlayQueue() {
         return playQueue;
     }
-    public static MediaPlayer getMediaPlayer(){
+
+    public static MediaPlayer getMediaPlayer() {
         return mediaPlayer;
     }
     //__________________________________________________________________________
@@ -113,15 +115,15 @@ public class MainActivity extends AppCompatActivity implements TrackListener {
                 new Album("Radiohead", "ok computer"),
                 new Album("Beck", "the information")
         );
-
-
+        
         // === Gestion des boutons ===
         FloatingActionButton fab_songPlay = (FloatingActionButton) findViewById(R.id.fab_songPlay);
         fab_songPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Play song", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show(); playQueue(0);
+                        .setAction("Action", null).show();
+                playQueue(0);
             }
         });
 
@@ -211,11 +213,13 @@ public class MainActivity extends AppCompatActivity implements TrackListener {
 
             //get columns indexes
             int pathColumn = trackCursor.getColumnIndex(MediaStore.Audio.Media.DATA);
+            int artistColumn = trackCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
+            int albumColumn = trackCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
             int titleColumn = trackCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.TITLE);
             int durationColumn = trackCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.DURATION);
             //add songs to list
             do {
-                this.songList.add(new Track(trackCursor.getString(pathColumn), trackCursor.getString(titleColumn), trackCursor.getInt(durationColumn)));
+                this.songList.add(new Track(trackCursor.getString(pathColumn), trackCursor.getString(titleColumn), trackCursor.getString(artistColumn), trackCursor.getString(albumColumn), trackCursor.getInt(durationColumn)));
             }
             while (trackCursor.moveToNext());
         }

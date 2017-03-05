@@ -9,7 +9,7 @@ public class Queue {
 
     public Queue() {
         this.tracks = new ArrayList<Track>();
-        this.currentTrackIndex = -1;
+        this.currentTrackIndex = 0;
     }
 
     public void addTracks(Track track) {
@@ -22,11 +22,35 @@ public class Queue {
         }
     }
 
+    public Track getCurrentTrack() {
+        if (currentTrackIndex > -1 && this.tracks.size() > currentTrackIndex) {
+            return this.tracks.get(currentTrackIndex);
+        } else {
+            return null;
+        }
+    }
+
     public void setCurrentTrackIndex(int currentTrackIndex) {
         this.currentTrackIndex = currentTrackIndex;
     }
 
+    public void previousTrack() {
+        if (this.currentTrackIndex - 1 > -1) {
+            this.currentTrackIndex -= 1;
+        }
+    }
+
+    public void nextTrack() {
+        if (this.currentTrackIndex + 1 < this.tracks.size()) {
+            this.currentTrackIndex += 1;
+        }
+    }
+
     public ArrayList<Track> getTracks() {
         return this.tracks;
+    }
+
+    public int getCurrentTrackIndex() {
+        return this.currentTrackIndex;
     }
 }
