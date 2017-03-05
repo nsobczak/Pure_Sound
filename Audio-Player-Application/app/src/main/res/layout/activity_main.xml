@@ -1,63 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutMainActivityContainer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.pez.audio_player_application.MainActivity">
+    android:layout_height="match_parent">
 
-    <include layout="@layout/content_main"/>
-
-    <!--TODO: mettre l'AppBarLayout en bas de l'écran
-    TODO: aligner les boutons sur une ligne-->
-
-    <android.support.design.widget.AppBarLayout
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme"
-        android:background="#7d5e50">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context="com.pez.audio_player_application.MainActivity">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#cfab82"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_songPlay"
+        <include
+            layout="@layout/fragment_main_tracklist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:srcCompat="@android:drawable/ic_media_play"
-            app:backgroundTint="@color/Red_dark" />
+            android:layout_above="@+id/songAppBar"/>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_songPause"
-            android:layout_width="wrap_content"
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/songAppBar"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:srcCompat="@android:drawable/ic_media_pause"
-            app:backgroundTint="@color/Red_dark" />
+            android:background="#7d5e50"
+            android:theme="@style/AppTheme">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_songPrevious"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:srcCompat="@android:drawable/ic_media_previous"
-            app:backgroundTint="@color/Red_dark" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/appbar_toolbar_margin_bottom"
+                android:background="#cfab82"
+                app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_songNext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:srcCompat="@android:drawable/ic_media_next"
-            app:backgroundTint="@color/Red_dark" />
+            <RelativeLayout
+                android:id="@+id/buttonsbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom">
 
-    </android.support.design.widget.AppBarLayout>
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_songPlay"
+                    android:layout_width="@dimen/fab_width"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|left"
+                    android:layout_margin="@dimen/fab_margin"
+                    app:backgroundTint="@color/Red_dark"
+                    app:srcCompat="@android:drawable/ic_media_play"/>
 
-</android.support.design.widget.CoordinatorLayout>
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_songPause"
+                    android:layout_width="@dimen/fab_width"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:layout_toRightOf="@id/fab_songPlay"
+                    app:backgroundTint="@color/Red_dark"
+                    app:layout_anchor="@id/fab_songPlay"
+                    app:layout_anchorGravity="bottom"
+                    app:srcCompat="@android:drawable/ic_media_pause"/>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_songPrevious"
+                    android:layout_width="@dimen/fab_width"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:layout_toRightOf="@id/fab_songPause"
+                    app:backgroundTint="@color/Red_dark"
+                    app:layout_anchor="@id/fab_songPause"
+                    app:layout_anchorGravity="bottom"
+                    app:srcCompat="@android:drawable/ic_media_previous"/>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_songNext"
+                    android:layout_width="@dimen/fab_width"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:layout_toRightOf="@id/fab_songPrevious"
+                    app:backgroundTint="@color/Red_dark"
+                    app:srcCompat="@android:drawable/ic_media_next"/>
+
+            </RelativeLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</RelativeLayout>
+

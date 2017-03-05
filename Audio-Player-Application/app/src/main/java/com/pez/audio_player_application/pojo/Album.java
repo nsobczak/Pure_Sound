@@ -7,6 +7,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//__________________________________________________________________________
+
 public class Album {
     private String artist;
     private String title;

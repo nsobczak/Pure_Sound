@@ -1,41 +1,53 @@
 package com.pez.audio_player_application;
 
+import android.Manifest;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.ContentResolver;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.pez.audio_player_application.adapters.TracksAdapter;
+import com.pez.audio_player_application.interfaces.TrackListener;
 import com.pez.audio_player_application.pojo.Album;
+import com.pez.audio_player_application.pojo.Track;
 import com.pez.audio_player_application.ui.fragments.DownloadAlbumInfo;
+import com.pez.audio_player_application.ui.fragments.MainActivityFragmentSongs;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 
 //__________________________________________________________________________
 
 /**
  * MainActivity : activity_01
  * TODO: Faire un lien vers la 2ème activité quand on clique sur une chanson
- * TODO: ajouter la liste des chansons
  * TODO: lier les 3 fragments
+ * TODO: lier metadonnées et chansons
  */
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TrackListener
+{
     private DownloadAlbumInfo downloadAlbumInfo;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
+
+    //__________________________________________________________________________
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +56,29 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        //Gestion des permissions pour pouvoir accéder aux chansons de la carte SD (l'ajout dan le manifest ne suffit pas)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        {
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED)
+            {
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                return;
+            }
+        }
+
+
+        // === Metadonnees ===
         downloadAlbumInfo = new DownloadAlbumInfo();
-        // TODO : Faire le retrieve APRES avoir récupéré les noms des fichiers
+        // TODO : A retirer !
         downloadAlbumInfo.retrieveAlbumsInfo(
                 new Album("Radiohead", "ok computer"),
                 new Album("Beck", "the information")
         );
 
 
+        // === Gestion des boutons ===
         FloatingActionButton fab_songPlay = (FloatingActionButton) findViewById(R.id.fab_songPlay);
         fab_songPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,9 +113,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 
@@ -118,51 +142,36 @@ public class MainActivity extends AppCompatActivity {
 
         //handle here : Share action
         if (id == R.id.actionShare) {
+            Toast.makeText(AudioPlayerApplication.getContext(), "Share listened song", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         //handle here : Kill action
         if (id == R.id.actionKill) {
+            Toast.makeText(AudioPlayerApplication.getContext(), "Kill application", Toast.LENGTH_SHORT).show();
+            finish();
+            return true;
+        }
+
+        //handle here : Synchronize database action
+        if (id == R.id.actionSyncDB)
+        {
+            Toast.makeText(AudioPlayerApplication.getContext(), "Sync database", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Main Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
+    //__________________________________________________________________________
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onViewTrack(Track track)
+    {
+        //TODO: lancer la 2ème activité sans lancer la chanson
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+        Toast.makeText(AudioPlayerApplication.getContext(), "Lancement de la 2ème activité avec la chanson : " +
+                track.getName() + " passée en paramètre.", Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
-    }
 }

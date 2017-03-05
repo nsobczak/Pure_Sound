@@ -1,7 +1,9 @@
 package com.pez.audio_player_application.ui.fragments;
 
+import android.app.Fragment;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,7 @@ import java.util.List;
 /**
  * MainActivityFragmentAlbums : A placeholder fragment containing a songs list view.
  */
+@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
 public class MainActivityFragmentAlbums extends Fragment implements AlbumInfoChangeListener
 {
     @Override
@@ -36,5 +39,18 @@ public class MainActivityFragmentAlbums extends Fragment implements AlbumInfoCha
         for(Album album : albums)
             AlbumDatabaseManager.saveAlbum(album);
     }
+
+
+        //TODO: tri des albums par ordre alphabétique
+//    if (albums != null)
+//    {
+//        Collections.sort(albums, new Comparator<Album>()
+//        {
+//            public int compare(Album albumA, Album albumB)
+//            {
+//                return albumA.getTitle().compareTo(albumB.getTitle());
+//            }
+//        });
+//    }
 
 }

@@ -3,23 +3,31 @@ package com.pez.audio_player_application;
 import android.app.Application;
 import android.content.Context;
 
-/**
- * @Auteur Baudouin
- * @Date 03/03/2017.
- */
+//__________________________________________________________________________
 
-public class AudioPlayerApplication extends Application {
+/**
+ * @author nicolas
+ * @date 26/02/17.
+ * AudioPlayerApplication
+ */
+public class AudioPlayerApplication extends Application
+{
     private static Context sContext;
 
-    // To have static access to the context in the application
-    public static Context getContext() {
+    public void onCreate()
+    {
+        super.onCreate();
+
+        // Keep a reference to the application context
+        sContext = getApplicationContext();
+    }
+
+
+    // Used to access Context anywhere within the app
+    public static Context getContext()
+    {
         return sContext;
     }
 
-    public void onCreate() {
-        super.onCreate();
-
-        sContext = getApplicationContext();
-    }
 
 }
