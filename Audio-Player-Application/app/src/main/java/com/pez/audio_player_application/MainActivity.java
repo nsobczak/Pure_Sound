@@ -4,8 +4,11 @@ import android.Manifest;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +28,7 @@ import android.widget.Toast;
 import com.pez.audio_player_application.adapters.TracksAdapter;
 import com.pez.audio_player_application.interfaces.TrackListener;
 import com.pez.audio_player_application.pojo.Album;
+import com.pez.audio_player_application.pojo.Queue;
 import com.pez.audio_player_application.pojo.Track;
 import com.pez.audio_player_application.ui.fragments.DownloadAlbumInfo;
 import com.pez.audio_player_application.ui.fragments.MainActivityFragmentSongs;
@@ -39,6 +43,7 @@ import java.util.Comparator;
 /**
  * MainActivity : activity_01
  * TODO: Faire un lien vers la 2ème activité quand on clique sur une chanson
+ * TODO: ajouter la liste des chansons
  * TODO: lier les 3 fragments
  * TODO: lier metadonnées et chansons
  */
@@ -46,23 +51,30 @@ public class MainActivity extends AppCompatActivity implements TrackListener
 {
     private DownloadAlbumInfo downloadAlbumInfo;
 
+    private static Queue playQueue = new Queue();
+    private static MediaPlayer mediaPlayer = new MediaPlayer();
 
+    public static Queue getPlayQueue() {
+        return playQueue;
+    }
+
+    public static MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
+    }
     //__________________________________________________________________________
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         //Gestion des permissions pour pouvoir accéder aux chansons de la carte SD (l'ajout dan le manifest ne suffit pas)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-        {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED)
-            {
+                    != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
                 return;
             }
@@ -76,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements TrackListener
                 new Album("Radiohead", "ok computer"),
                 new Album("Beck", "the information")
         );
-
 
         // === Gestion des boutons ===
         FloatingActionButton fab_songPlay = (FloatingActionButton) findViewById(R.id.fab_songPlay);
