@@ -15,6 +15,7 @@ import com.pez.audio_player_application.pojo.Track;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -32,9 +33,8 @@ public class AlbumDatabaseManager {
             album.setTracks(new ArrayList<Track>());
 
             // artist
-            int artist_index = c.getColumnIndex(AlbumDatabaseContract.ARTIST);
-            if (artist_index >= 0) {
-                String artist_name = c.getString(artist_index);
+            if (c.getColumnIndex(AlbumDatabaseContract.ARTIST) >= 0) {
+                String artist_name = c.getString(c.getColumnIndex(AlbumDatabaseContract.ARTIST));
                 album.setArtist(artist_name);
             }
 
@@ -51,22 +51,6 @@ public class AlbumDatabaseManager {
             // url
             if (c.getColumnIndex(AlbumDatabaseContract.URL) >= 0) {
                 album.setUrl(c.getString(c.getColumnIndex(AlbumDatabaseContract.URL)));
-            }
-
-            // tracks
-            if (c.getColumnIndex(AlbumDatabaseContract.TRACKS) >= 0) {
-                try {
-                    ArrayList<Track> tracks = new ArrayList<>();
-                    JSONObject tracks_obj = new JSONObject(c.getString(c.getColumnIndex(AlbumDatabaseContract.TRACKS)));
-                    JSONArray tracklist = tracks_obj.getJSONArray("track");
-                    for (int i = 0; i < tracklist.length(); i++) {
-                        JSONObject current_track = tracklist.getJSONObject(i);
-                        tracks.add(new Track(current_track));
-                    }
-                    album.setTracks(tracks);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
             }
 
             // cover_url
@@ -88,7 +72,6 @@ public class AlbumDatabaseManager {
         values.put(AlbumDatabaseContract.TITLE, album.getTitle());
         values.put(AlbumDatabaseContract.MBID, album.getMbid());
         values.put(AlbumDatabaseContract.URL, album.getUrl());
-        values.put(AlbumDatabaseContract.TRACKS, "TODO"); // TODO
         values.put(AlbumDatabaseContract.COVER_URL, album.getCoverUrl());
 
         return values;
@@ -108,7 +91,23 @@ public class AlbumDatabaseManager {
                 AlbumDatabaseContract.DELETE_ALBUM_MBID_EQUALS, new String[]{album.getMbid()});
     }
 
+    public static Album getAlbumFromDatabase(String albumName, String artistName) {
+        Context context = AudioPlayerApplication.getContext();
+        if (context != null && !TextUtils.isEmpty(albumName) && !TextUtils.isEmpty(artistName)) {
+            Cursor albumCursor = context.getContentResolver().query(AlbumDatabaseContract.ALBUM_META_URI,
+                    AlbumDatabaseContract.PROJECTION_COVER,
+                    AlbumDatabaseContract.COVER_URL_CLAUSE,
+                    new String[] { albumName, artistName },
+                    null
+                    );
+            if(albumCursor.moveToFirst())
+                return AlbumDatabaseManager.albumFromCursor(albumCursor);
+        }
+        return null;
+    }
+
     public static void testContentProvider() {
+        getAlbumFromDatabase("Radiohead", "OK Computer");
         Context context = AudioPlayerApplication.getContext();
         if (context != null) {
             Cursor cursor = context.getContentResolver().query(AlbumDatabaseContract.ALBUM_META_URI,

@@ -21,7 +21,6 @@ public class AlbumDatabaseContract implements BaseColumns {
     public static final String TITLE     = "title";
     public static final String MBID      = "mbid";
     public static final String URL       = "url";
-    public static final String TRACKS    = "tracks";
     public static final String COVER_URL = "cover_url";
 
     public static String CREATE_TABLE_IF_NOT_EXIST = "CREATE TABLE IF NOT EXISTS ";
@@ -30,8 +29,8 @@ public class AlbumDatabaseContract implements BaseColumns {
             TITLE + " TEXT NOT NULL, " +
             MBID + " TEXT NOT NULL, " +
             URL + " TEXT NOT NULL, " +
-            TRACKS + " VARCHAR, " +
             COVER_URL + " VARCHAR NOT NULL)";
+
     public static String CREATE_TABLE_ALBUMS = CREATE_TABLE_IF_NOT_EXIST + ALBUM_TABLE + ALBUM_TABLE_SUFFIX;
     public static String DELETE_ALBUM_MBID_EQUALS = MBID + " = ?";
 
@@ -43,9 +42,15 @@ public class AlbumDatabaseContract implements BaseColumns {
             TITLE,
             MBID,
             URL,
-            TRACKS,
             COVER_URL
     };
+
+    public static final String[] PROJECTION_COVER = new String[]{
+            ARTIST,
+            TITLE,
+            COVER_URL
+    };
+    public static final String COVER_URL_CLAUSE = ARTIST + "= ? AND " + TITLE + "= ?";
 
 
 
