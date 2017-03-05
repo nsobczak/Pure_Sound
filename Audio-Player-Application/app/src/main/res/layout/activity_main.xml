@@ -19,7 +19,8 @@
             layout="@layout/fragment_main_tracklist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/songAppBar"/>
+            android:layout_above="@+id/songAppBar"
+            android:id="@+id/include" />
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/songAppBar"
@@ -88,6 +89,7 @@
             </RelativeLayout>
 
         </android.support.design.widget.AppBarLayout>
+
 
     </android.support.design.widget.CoordinatorLayout>
 

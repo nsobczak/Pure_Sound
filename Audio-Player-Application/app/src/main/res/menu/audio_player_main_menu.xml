@@ -1,18 +1,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="com.pez.audio_player_application.MainActivity">
 
     <item
         android:id="@+id/actionShare"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/action_share"/>
 
     <item
         android:id="@+id/actionKill"
         android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_kill"/>
+        app:showAsAction="never"
+        android:title="Close"/>
 
     <item
         android:id="@+id/actionSyncDB"

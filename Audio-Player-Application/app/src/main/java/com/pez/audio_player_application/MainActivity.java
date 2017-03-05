@@ -31,6 +31,16 @@ import com.pez.audio_player_application.ui.fragments.MainActivityFragmentSongs;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.View;
+
+import android.widget.Button;
+import android.widget.ImageView;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 
 //__________________________________________________________________________
@@ -58,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements TrackListener
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         //Gestion des permissions pour pouvoir accéder aux chansons de la carte SD (l'ajout dan le manifest ne suffit pas)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
@@ -110,6 +121,9 @@ public class MainActivity extends AppCompatActivity implements TrackListener
 
 
         // === Gestion des boutons ===
+
+
+
         FloatingActionButton fab_songPlay = (FloatingActionButton) findViewById(R.id.fab_songPlay);
         fab_songPlay.setOnClickListener(new View.OnClickListener()
         {
@@ -185,13 +199,21 @@ public class MainActivity extends AppCompatActivity implements TrackListener
         if (id == R.id.actionShare)
         {
             Toast.makeText(AudioPlayerApplication.getContext(), "Share listened song", Toast.LENGTH_SHORT).show();
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+
+            //Share Text
+            // shareIntent.setType("text/plain");
+
+            //Share Image and text
+            shareIntent.setType("image/jpeg");
+            startActivity(Intent.createChooser(shareIntent, "Share"));
             return true;
         }
 
         //handle here : Kill action
         if (id == R.id.actionKill)
         {
-            Toast.makeText(AudioPlayerApplication.getContext(), "Kill application", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AudioPlayerApplication.getContext(), "Close application", Toast.LENGTH_SHORT).show();
             finish();
             return true;
         }
@@ -240,6 +262,7 @@ public class MainActivity extends AppCompatActivity implements TrackListener
         Toast.makeText(AudioPlayerApplication.getContext(), "Lancement de la 2ème activité avec la chanson : " +
                 track.getName(), Toast.LENGTH_LONG).show();
     }
+
 
 
 }
