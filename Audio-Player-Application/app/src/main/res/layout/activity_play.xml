@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutPlayActivityContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_margin="5dp"
+        app:srcCompat="@android:drawable/ic_media_previous" />
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+        <TextView
+            android:layout_margin="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:id="@+id/textViewTitre"
+            android:text="Titre"/>
+        <TextView
+            android:layout_margin="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewTitre"
+            android:textSize="15dp"
+            android:id="@+id/textViewArtisteAlbum"
+            android:text="Artiste - Album"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal|center">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/button_Previous"
+            android:layout_width="@dimen/fab_width"
+            android:layout_height="@dimen/fab_width"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="@dimen/fab_margin"
+            app:backgroundTint="@color/Red_dark"
+            app:layout_anchorGravity="bottom"
+            app:srcCompat="@android:drawable/ic_media_previous" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/button_PlayPause"
+            android:layout_width="@dimen/fab_width"
+            android:layout_height="@dimen/fab_width"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="@dimen/fab_margin"
+            android:layout_toRightOf="@id/button_Previous"
+            app:backgroundTint="@color/Red_dark"
+            app:srcCompat="@android:drawable/ic_media_pause" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/button_Next"
+            android:layout_width="@dimen/fab_width"
+            android:layout_height="@dimen/fab_width"
+            android:layout_gravity="bottom"
+            android:layout_margin="@dimen/fab_margin"
+            android:layout_toRightOf="@id/button_PlayPause"
+            app:backgroundTint="@color/Red_dark"
+            app:srcCompat="@android:drawable/ic_media_next" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <SeekBar
+            android:id="@+id/seekBarSong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textViewProgressSong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/seekBarSong"
+            android:layout_margin="10dp"
+            android:layout_alignParentRight="true"
+            android:text="0:00 / 0:00" />
+    </RelativeLayout>
+
+
+</LinearLayout>
