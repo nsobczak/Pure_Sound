@@ -31,6 +31,7 @@ public class DatabaseProvider extends ContentProvider {
      */
     @Override
     public boolean onCreate() {
+        albumHelper = new AlbumDatabaseHelper(getContext());
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(AlbumDatabaseContract.CONTENT_PROVIDER_AUTHORITY, AlbumDatabaseContract.ALBUM_TABLE, ALBUMS_CODE);
         uriMatcher.addURI(AlbumDatabaseContract.CONTENT_PROVIDER_AUTHORITY, AlbumDatabaseContract.ALBUM_DETAIL_TABLE, ALBUM_DETAIL_CODE);
@@ -41,7 +42,8 @@ public class DatabaseProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        return null;
+        Log.i("provider", "query");
+        return albumHelper.getReadableDatabase().query(AlbumDatabaseContract.ALBUM_TABLE, projection, selection, selectionArgs, sortOrder, null, null);
     }
 
     @Nullable

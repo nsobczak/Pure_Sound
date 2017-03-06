@@ -79,6 +79,10 @@ public class Album {
 
     }
 
+    public String getCoverUrl() {
+        return this.cover_url;
+    }
+
     public void setMbid(String mbid) {
         this.mbid = mbid;
     }
@@ -103,4 +107,8 @@ public class Album {
         return url;
     }
 
+    @Override
+    public String toString() {
+        return getTitle() + " by " + getArtist();
+    }
 }
