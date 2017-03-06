@@ -176,7 +176,6 @@ public class MainActivity extends AppCompatActivity implements TrackListener {
     //__________________________________________________________________________
     @Override
     public void onViewTrack(Track track) {
-        //TODO: lancer la 2ème activité sans lancer la chanson
         playQueue.addTracks(track);
         playMusic();
     }
