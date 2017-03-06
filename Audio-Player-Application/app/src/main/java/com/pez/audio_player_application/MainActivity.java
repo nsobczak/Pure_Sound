@@ -49,7 +49,6 @@ import java.util.Comparator;
  */
 public class MainActivity extends AppCompatActivity implements TrackListener
 {
-    private DownloadAlbumInfo downloadAlbumInfo;
 
     private static Queue playQueue = new Queue();
     private static MediaPlayer mediaPlayer = new MediaPlayer();
@@ -79,15 +78,6 @@ public class MainActivity extends AppCompatActivity implements TrackListener
                 return;
             }
         }
-
-
-        // === Metadonnees ===
-        downloadAlbumInfo = new DownloadAlbumInfo();
-        // TODO : A retirer !
-        downloadAlbumInfo.retrieveAlbumsInfo(
-                new Album("Radiohead", "ok computer"),
-                new Album("Beck", "the information")
-        );
 
         // === Gestion des boutons ===
         FloatingActionButton fab_songPlay = (FloatingActionButton) findViewById(R.id.fab_songPlay);

@@ -23,6 +23,9 @@ public class Track {
     private String artist;
     private String album;
     private int duration;
+    private String cover_url;
+
+    public Track() { }
 
     public Track(String path, String name, String artist, String album, int duration) {
         this.path = path;
@@ -30,6 +33,12 @@ public class Track {
         this.artist = artist;
         this.album = album;
         this.duration = duration;
+        this.cover_url = "";
+    }
+
+    @Override
+    public String toString() {
+        return this.getName() + " -- " + getArtist();
     }
 
     public String getName() {
@@ -61,5 +70,33 @@ public class Track {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCover_url() {
+        return cover_url;
+    }
+
+    public void setCover_url(String cover_url) {
+        this.cover_url = cover_url;
     }
 }

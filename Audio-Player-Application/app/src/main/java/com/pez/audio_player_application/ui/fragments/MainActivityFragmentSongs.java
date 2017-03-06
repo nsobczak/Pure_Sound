@@ -24,6 +24,7 @@ import com.pez.audio_player_application.adapters.TracksAdapter;
 import com.pez.audio_player_application.async.RetrieveTracksAsyncTask;
 import com.pez.audio_player_application.interfaces.TrackChangeListener;
 import com.pez.audio_player_application.interfaces.TrackListener;
+import com.pez.audio_player_application.pojo.Album;
 import com.pez.audio_player_application.pojo.Track;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ import java.util.List;
 @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
 public class MainActivityFragmentSongs extends Fragment implements TrackChangeListener, AdapterView.OnItemClickListener
 {
+    private DownloadAlbumInfo downloadAlbumInfo;
     private RetrieveTracksAsyncTask retrieveTracksAsyncTask;
     private ListView songListView;
     private TrackListener trackListener;
@@ -107,6 +109,10 @@ public class MainActivityFragmentSongs extends Fragment implements TrackChangeLi
     @Override
     public void onTrackRetrieved(List<Track> tracks)
     {
+        // On récupère les métadonnées
+        downloadAlbumInfo = new DownloadAlbumInfo();
+        downloadAlbumInfo.retrieveAlbumsInfo(tracks.toArray(new Track[tracks.size()]));
+
         //trie des chansons par ordre alphabétique
         if (tracks != null)
         {

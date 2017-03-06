@@ -1,6 +1,7 @@
 package com.pez.audio_player_application.helpers;
 
 import com.pez.audio_player_application.pojo.Album;
+import com.pez.audio_player_application.pojo.Track;
 import com.pez.audio_player_application.utils.Constants;
 
 import org.json.JSONArray;
@@ -60,6 +61,44 @@ public class MetadataSongHelper {
             e.printStackTrace();
         }
 
+        return null;
+    }
+
+    public static Track getAlbumTrackInfo(Track track) {
+        // Create the HTTP Get request to Lastfm API
+        String url = Constants.API_BASE_URL + "?method=track.getinfo&api_key=" + Constants.API_KEY_LASTFM + "&artist=" +
+                track.getArtist() + "&track=" + track.getName() + "&format=json";
+        final HttpURLConnection connection = getRequest(url);
+        try {
+            if (connection != null) {
+                final int responseCode = connection.getResponseCode();
+                if (responseCode == 200) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"), 8);
+                    StringBuilder sb = new StringBuilder();
+
+                    String line = null;
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line).append("\n");
+                    }
+                    String result = sb.toString();
+                    try {
+                        JSONObject object = new JSONObject(result);
+                        if(object.has("track")) {
+                            JSONObject trackinfo = new JSONObject(result).getJSONObject("track");
+                            JSONObject album = new JSONObject(trackinfo.getString("album"));
+                            track.setAlbum(album.getString("title"));
+                            JSONArray images = new JSONArray(album.getString("image"));
+                            track.setCover_url(((JSONObject)images.get(images.length() - 1)).getString("#text"));
+                            return track;
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
