@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements TrackListener
     public static MediaPlayer getMediaPlayer() {
         return mediaPlayer;
     }
+
     //__________________________________________________________________________
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     @Override
@@ -166,12 +167,19 @@ public class MainActivity extends AppCompatActivity implements TrackListener
 
     //__________________________________________________________________________
     @Override
-    public void onViewTrack(Track track)
-    {
-        //TODO: lancer la 2ème activité sans lancer la chanson
+    public void onViewTrack(Track track) {
+        playQueue.addTracks(track);
+        playMusic();
+    }
 
-        Toast.makeText(AudioPlayerApplication.getContext(), "Lancement de la 2ème activité avec la chanson : " +
-                track.getName() + " passée en paramètre.", Toast.LENGTH_LONG).show();
+    public void playMusic(int position) {
+        playQueue.setCurrentTrackIndex(position);
+        Intent intent = new Intent(this, PlayActivity.class);
+        startActivity(intent);
+    }
+
+    public void playMusic() {
+        playMusic(playQueue.getTracks().size() - 1);
     }
 
 

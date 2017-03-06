@@ -1,6 +1,7 @@
 package com.pez.audio_player_application.ui.fragments;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Build;
@@ -58,10 +59,11 @@ public class MainActivityFragmentSongs extends Fragment implements TrackChangeLi
      * @param activity
      */
     @Override
-    public void onAttach(Context activity)
+    public void onAttach(Activity activity)
     {
         super.onAttach(activity);
 
+        Log.e("SongsFragment", "onAttach: ");
         if (activity instanceof MainActivity)
         {
             this.trackListener = (MainActivity) activity;
@@ -126,6 +128,7 @@ public class MainActivityFragmentSongs extends Fragment implements TrackChangeLi
         }
 
         final TracksAdapter tracksAdapter = new TracksAdapter(tracks);
+        tracksAdapter.setTrackListener(this.trackListener);
         this.songListView.setAdapter(tracksAdapter);
         Toast.makeText(AudioPlayerApplication.getContext(), "Tracks retrieved !", Toast.LENGTH_SHORT).show();
 
