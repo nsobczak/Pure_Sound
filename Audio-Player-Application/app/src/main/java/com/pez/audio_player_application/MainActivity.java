@@ -54,17 +54,21 @@ public class MainActivity extends AppCompatActivity implements TrackListener
     private static Queue playQueue = new Queue();
     private static MediaPlayer mediaPlayer = new MediaPlayer();
 
-    public static Queue getPlayQueue() {
+    public static Queue getPlayQueue()
+    {
         return playQueue;
     }
 
-    public static MediaPlayer getMediaPlayer() {
+    public static MediaPlayer getMediaPlayer()
+    {
         return mediaPlayer;
     }
+
     //__________________________________________________________________________
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         setContentView(R.layout.activity_main);
@@ -72,9 +76,11 @@ public class MainActivity extends AppCompatActivity implements TrackListener
         setSupportActionBar(toolbar);
 
         //Gestion des permissions pour pouvoir accéder aux chansons de la carte SD (l'ajout dan le manifest ne suffit pas)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        {
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
+                    != PackageManager.PERMISSION_GRANTED)
+            {
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
                 return;
             }
@@ -91,34 +97,42 @@ public class MainActivity extends AppCompatActivity implements TrackListener
 
         // === Gestion des boutons ===
         FloatingActionButton fab_songPlay = (FloatingActionButton) findViewById(R.id.fab_songPlay);
-        fab_songPlay.setOnClickListener(new View.OnClickListener() {
+        fab_songPlay.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 Snackbar.make(view, "Play song", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
             }
         });
 
         FloatingActionButton fab_songNext = (FloatingActionButton) findViewById(R.id.fab_songNext);
-        fab_songNext.setOnClickListener(new View.OnClickListener() {
+        fab_songNext.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 Snackbar.make(view, "Next song", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
         FloatingActionButton fab_songPause = (FloatingActionButton) findViewById(R.id.fab_songPause);
-        fab_songPause.setOnClickListener(new View.OnClickListener() {
+        fab_songPause.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 Snackbar.make(view, "On pause", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
         FloatingActionButton fab_songPrevious = (FloatingActionButton) findViewById(R.id.fab_songPrevious);
-        fab_songPrevious.setOnClickListener(new View.OnClickListener() {
+        fab_songPrevious.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 Snackbar.make(view, "Previous song", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -134,7 +148,8 @@ public class MainActivity extends AppCompatActivity implements TrackListener
      * @return
      */
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         getMenuInflater().inflate(R.menu.audio_player_main_menu, menu);
         return true;
     }
@@ -148,17 +163,20 @@ public class MainActivity extends AppCompatActivity implements TrackListener
      * @return
      */
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         int id = item.getItemId();
 
         //handle here : Share action
-        if (id == R.id.actionShare) {
+        if (id == R.id.actionShare)
+        {
             Toast.makeText(AudioPlayerApplication.getContext(), "Share listened song", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         //handle here : Kill action
-        if (id == R.id.actionKill) {
+        if (id == R.id.actionKill)
+        {
             Toast.makeText(AudioPlayerApplication.getContext(), "Kill application", Toast.LENGTH_SHORT).show();
             finish();
             return true;

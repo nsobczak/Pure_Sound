@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 
 import com.pez.audio_player_application.AudioPlayerApplication;
 import com.pez.audio_player_application.R;
+import com.pez.audio_player_application.interfaces.TrackListener;
 import com.pez.audio_player_application.pojo.Track;
 import com.pez.audio_player_application.utils.TimeUtilities;
 
@@ -19,22 +20,32 @@ import java.util.List;
  * @author nicolas
  * @date 28/02/17
  */
-public class TracksAdapter extends BaseAdapter {
+public class TracksAdapter extends BaseAdapter
+{
     private List<Track> trackList;
     private final LayoutInflater layoutInflater;
+    private TrackListener trackListener;
 
 
     //__________________________________________________________________________
-    public TracksAdapter(List<Track> newTrackList) {
+    public TracksAdapter(List<Track> newTrackList)
+    {
         this.trackList = newTrackList;
         this.layoutInflater = LayoutInflater.from(AudioPlayerApplication.getContext());
+        this.trackListener = null;
     }
 
+    public void setTrackListener(TrackListener trackListener)
+    {
+        this.trackListener = trackListener;
+    }
 
     @Override
-    public int getCount() {
+    public int getCount()
+    {
         int result = 0;
-        if (this.trackList != null) {
+        if (this.trackList != null)
+        {
             result = this.trackList.size();
         }
         return result;
@@ -42,9 +53,11 @@ public class TracksAdapter extends BaseAdapter {
 
 
     @Override
-    public Object getItem(int position) {
+    public Object getItem(int position)
+    {
         Track result = null;
-        if (this.trackList != null) {
+        if (this.trackList != null)
+        {
             result = this.trackList.get(position);
         }
         return result;
@@ -52,7 +65,8 @@ public class TracksAdapter extends BaseAdapter {
 
 
     @Override
-    public long getItemId(int i) {
+    public long getItemId(int i)
+    {
         return 0;
     }
 
@@ -68,14 +82,17 @@ public class TracksAdapter extends BaseAdapter {
      * @return convertView
      */
     @Override
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
+    public View getView(int position, View convertView, ViewGroup viewGroup)
+    {
         TracksAdapterViewHolder holder;
 
-        if (convertView == null) {
+        if (convertView == null)
+        {
             convertView = this.layoutInflater.inflate(R.layout.adapter_tracksfragment_customlayout, null);
             holder = new TracksAdapterViewHolder(convertView);
             convertView.setTag(holder);
-        } else {
+        } else
+        {
             holder = (TracksAdapterViewHolder) convertView.getTag();
         }
 
