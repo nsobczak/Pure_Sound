@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pez.audio_player_application">
+          package="com.pez.audio_player_application">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:name=".AudioPlayerApplication"
@@ -16,12 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
@@ -35,19 +36,20 @@
             android:name=".SongDetailsActivity"
             android:label="@string/activity_songDetails"
             android:theme="@style/AppTheme.NoActionBar">
-        </activity> 
+        </activity>
 
         <activity
             android:name=".PlayActivity"
             android:label="Lecture"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
 
         <provider
-            android:authorities="pez.audio_player_application.AlbumAuthority"
             android:name="com.pez.audio_player_application.database.DatabaseProvider"
-            android:exported="false" />
+            android:authorities="pez.audio_player_application.AlbumAuthority"
+            android:exported="false"/>
 
     </application>
 
