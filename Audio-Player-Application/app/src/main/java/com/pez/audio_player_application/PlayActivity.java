@@ -151,16 +151,19 @@ public class PlayActivity extends Activity {
                 FloatingActionButton buttonPlayPause = (FloatingActionButton) findViewById(R.id.button_PlayPause);
                 buttonPlayPause.setImageResource(android.R.drawable.ic_media_pause);
 
-                ImageView coverAlbum = (ImageView)findViewById(R.id.imageCover);
-                AlbumDatabaseManager.testContentProvider();
-                String cover_url  = AlbumDatabaseManager.getTrackFromDatabase(trackToRead.getName(), trackToRead.getArtist()).getCover_url();
-
+                ImageView coverAlbum = (ImageView) findViewById(R.id.imageCover);
+                //AlbumDatabaseManager.testContentProvider();
+                Track foundTrack = AlbumDatabaseManager.getTrackFromDatabase(trackToRead.getName(), trackToRead.getArtist());
+                if (foundTrack != null) {
+                    String coverURL = foundTrack.getCover_url();
+                }
                 TextView textViewtTitre = (TextView) findViewById(R.id.textViewTitre);
                 textViewtTitre.setText(trackToRead.getName());
 
                 TextView textViewtArtisteAlbum = (TextView) findViewById(R.id.textViewArtisteAlbum);
                 textViewtArtisteAlbum.setText(trackToRead.getArtist() + " - " + trackToRead.getAlbum());
-            } catch (IOException e) { }
+            } catch (IOException e) {
+            }
         }
     }
 

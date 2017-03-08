@@ -91,6 +91,7 @@ public class MetadataSongHelper {
                             track.setAlbum(album.getString("title"));
                             JSONArray images = new JSONArray(album.getString("image"));
                             track.setCover_url(((JSONObject)images.get(images.length() - 1)).getString("#text"));
+                            Log.d("", track.toString());
                             return track;
                         }
                     } catch (JSONException e) {
