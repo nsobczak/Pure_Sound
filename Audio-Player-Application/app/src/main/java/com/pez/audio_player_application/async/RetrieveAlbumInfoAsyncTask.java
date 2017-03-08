@@ -8,6 +8,7 @@ import com.pez.audio_player_application.SongDetailsActivity;
 import com.pez.audio_player_application.helpers.MetadataSongHelper;
 import com.pez.audio_player_application.interfaces.AlbumInfoChangeListener;
 import com.pez.audio_player_application.pojo.Album;
+import com.pez.audio_player_application.pojo.Track;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +18,14 @@ import java.util.List;
  * @Date 14/02/2017.
  */
 
-public class RetrieveAlbumInfoAsyncTask extends AsyncTask<Album, Integer, List<Album>> {
+public class RetrieveAlbumInfoAsyncTask extends AsyncTask<Track, Integer, List<Track>> {
 
     AlbumInfoChangeListener listener;
 
     public RetrieveAlbumInfoAsyncTask(AlbumInfoChangeListener listener) {
         this.listener = listener;
     }
-
+/*
     @Override
     protected List<Album> doInBackground(Album... params) {
         List<Album> albumList = new ArrayList<>();
@@ -34,14 +35,23 @@ public class RetrieveAlbumInfoAsyncTask extends AsyncTask<Album, Integer, List<A
             albumList.add(MetadataSongHelper.getAlbumInfo(albumName, artistName));
         }
         return albumList;
+    } */
+
+    @Override
+    protected List<Track> doInBackground(Track... params) {
+        List<Track> tracksList = new ArrayList<>();
+        for(Track track : params) {
+            tracksList.add(MetadataSongHelper.getAlbumTrackInfo(track));
+        }
+        return tracksList;
     }
 
     @Override
-    protected void onPostExecute(List<Album> albums) {
-        super.onPostExecute(albums);
+    protected void onPostExecute(List<Track> tracks) {
+        super.onPostExecute(tracks);
         Log.d("", "info albums retrieved ");
         if (listener != null) {
-            listener.onAlbumInfoRetrieved(albums);
+            listener.onAlbumInfoRetrieved(tracks);
         }
     }
 }

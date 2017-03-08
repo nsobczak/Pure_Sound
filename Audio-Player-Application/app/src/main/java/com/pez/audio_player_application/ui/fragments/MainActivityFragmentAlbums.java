@@ -4,14 +4,17 @@ import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.pez.audio_player_application.R;
 import com.pez.audio_player_application.async.RetrieveAlbumInfoAsyncTask;
+import com.pez.audio_player_application.database.AlbumDatabaseManager;
 import com.pez.audio_player_application.interfaces.AlbumInfoChangeListener;
 import com.pez.audio_player_application.pojo.Album;
+import com.pez.audio_player_application.pojo.Track;
 
 import java.util.List;
 
@@ -32,8 +35,23 @@ public class MainActivityFragmentAlbums extends Fragment implements AlbumInfoCha
     }
 
     @Override
-    public void onAlbumInfoRetrieved(List<Album> albums) {
-        // TODO
+    public void onAlbumInfoRetrieved(List<Track> tracks) {
+        // We store the track metadata (if necessary)
+        for(Track track : tracks)
+            AlbumDatabaseManager.saveTrack(track);
     }
+
+
+        //TODO: tri des albums par ordre alphabétique
+//    if (albums != null)
+//    {
+//        Collections.sort(albums, new Comparator<Album>()
+//        {
+//            public int compare(Album albumA, Album albumB)
+//            {
+//                return albumA.getTitle().compareTo(albumB.getTitle());
+//            }
+//        });
+//    }
 
 }

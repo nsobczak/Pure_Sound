@@ -1,18 +1,15 @@
 package com.pez.audio_player_application.adapters;
 
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.pez.audio_player_application.AudioPlayerApplication;
 import com.pez.audio_player_application.R;
+import com.pez.audio_player_application.interfaces.TrackListener;
 import com.pez.audio_player_application.pojo.Track;
+import com.pez.audio_player_application.utils.TimeUtilities;
 
 import java.util.List;
 
@@ -27,6 +24,7 @@ public class TracksAdapter extends BaseAdapter
 {
     private List<Track> trackList;
     private final LayoutInflater layoutInflater;
+    private TrackListener trackListener;
 
 
     //__________________________________________________________________________
@@ -34,8 +32,13 @@ public class TracksAdapter extends BaseAdapter
     {
         this.trackList = newTrackList;
         this.layoutInflater = LayoutInflater.from(AudioPlayerApplication.getContext());
+        this.trackListener = null;
     }
 
+    public void setTrackListener(TrackListener trackListener)
+    {
+        this.trackListener = trackListener;
+    }
 
     @Override
     public int getCount()
@@ -81,22 +84,23 @@ public class TracksAdapter extends BaseAdapter
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup)
     {
-        ViewHolder holder;
+        TracksAdapterViewHolder holder;
 
         if (convertView == null)
         {
             convertView = this.layoutInflater.inflate(R.layout.adapter_tracksfragment_customlayout, null);
-            holder = new ViewHolder(convertView);
+            holder = new TracksAdapterViewHolder(convertView);
             convertView.setTag(holder);
         } else
         {
-            holder = (ViewHolder) convertView.getTag();
+            holder = (TracksAdapterViewHolder) convertView.getTag();
         }
 
         //Get and set the current item
         final Track track = (Track) getItem(position);
         holder.title.setText(track.getName());
-        holder.duration.setText(String.valueOf(track.getDuration()) + " s/ms?");
+        holder.artist.setText(track.getArtist());
+        holder.duration.setText(TimeUtilities.milliSecondsToString(track.getDuration()));
 
         //View with the right info
         return convertView;
