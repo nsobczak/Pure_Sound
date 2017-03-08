@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements TrackListener {
             finish();
             return true;
         }
-        
+
 
         return super.onOptionsItemSelected(item);
     }

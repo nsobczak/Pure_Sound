@@ -19,7 +19,7 @@ public class Album {
     private List<Track> tracks;
 
     public Album() {
-        this("","","","","");
+        this("", "", "", "", "");
     }
 
     public Album(String artist, String title) {
@@ -53,22 +53,23 @@ public class Album {
     public Album(JSONObject albumJSON) {
         try {
             this.artist = albumJSON.getString("artist");
-            if(albumJSON.has("name"))
+            if (albumJSON.has("name"))
                 this.title = albumJSON.getString("name");
-            if(albumJSON.has("mbid"))
+            if (albumJSON.has("mbid"))
                 this.mbid = albumJSON.getString("mbid");
-            if(albumJSON.has("url"))
+            if (albumJSON.has("url"))
                 this.url = albumJSON.getString("url");
-            JSONArray images = albumJSON.getJSONArray("image");
-            for(int i = 0 ; i < images.length() ; i++){
-                JSONObject test = (JSONObject)images.get(i);
-                if(test.getString("size").equals("extralarge")){
-                    this.cover_url = test.getString("#text");
+            if (albumJSON.has("image")) {
+                JSONArray images = albumJSON.getJSONArray("image");
+                for (int i = 0; i < images.length(); i++) {
+                    JSONObject test = (JSONObject) images.get(i);
+                    if (test.getString("size").equals("extralarge")) {
+                        this.cover_url = test.getString("#text");
+                    }
                 }
             }
-            //this.cover_url = ((JSONObject)images.get(images.length() - 1)).getString("#text");
             this.tracks = new ArrayList<>();
-            if(albumJSON.has("tracks")) {
+            if (albumJSON.has("tracks")) {
                 JSONArray tracklist = albumJSON.getJSONObject("tracks").getJSONArray("track");
                 for (int i = 0; i < tracklist.length(); i++) {
                     JSONObject current_track = tracklist.getJSONObject(i);
