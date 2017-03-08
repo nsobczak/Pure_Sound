@@ -36,6 +36,16 @@ import com.pez.audio_player_application.ui.fragments.MainActivityFragmentSongs;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.View;
+
+import android.widget.Button;
+import android.widget.ImageView;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 
 //__________________________________________________________________________
@@ -109,12 +119,21 @@ public class MainActivity extends AppCompatActivity implements TrackListener {
         //handle here : Share action
         if (id == R.id.actionShare) {
             Toast.makeText(AudioPlayerApplication.getContext(), "Share listened song", Toast.LENGTH_SHORT).show();
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+
+            //Share Text
+            // shareIntent.setType("text/plain");
+
+            //Share Image and text
+            shareIntent.setType("image/jpeg");
+            startActivity(Intent.createChooser(shareIntent, "Share"));
             return true;
         }
 
         //handle here : Kill action
-        if (id == R.id.actionKill) {
-            Toast.makeText(AudioPlayerApplication.getContext(), "Kill application", Toast.LENGTH_SHORT).show();
+        if (id == R.id.actionKill)
+        {
+            Toast.makeText(AudioPlayerApplication.getContext(), "Close application", Toast.LENGTH_SHORT).show();
             finish();
             return true;
         }
