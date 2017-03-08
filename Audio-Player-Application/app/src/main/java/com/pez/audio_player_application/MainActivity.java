@@ -47,8 +47,8 @@ import java.util.Comparator;
  * TODO: lier les 3 fragments
  * TODO: lier metadonnées et chansons
  */
-public class MainActivity extends AppCompatActivity implements TrackListener {
-    private DownloadAlbumInfo downloadAlbumInfo;
+public class MainActivity extends AppCompatActivity implements TrackListener
+{
 
     private static Queue playQueue = new Queue();
     private static MediaPlayer mediaPlayer = new MediaPlayer();
@@ -79,15 +79,6 @@ public class MainActivity extends AppCompatActivity implements TrackListener {
                 return;
             }
         }
-
-
-        // === Metadonnees ===
-        downloadAlbumInfo = new DownloadAlbumInfo();
-        // TODO : A retirer !
-        downloadAlbumInfo.retrieveAlbumsInfo(
-                new Album("Radiohead", "ok computer"),
-                new Album("Beck", "the information")
-        );
 
         // === Gestion des boutons ===
         FloatingActionButton fab_songPlay = (FloatingActionButton) findViewById(R.id.fab_songPlay);
@@ -165,7 +156,8 @@ public class MainActivity extends AppCompatActivity implements TrackListener {
         }
 
         //handle here : Synchronize database action
-        if (id == R.id.actionSyncDB) {
+        if (id == R.id.actionSyncDB)
+        {
             Toast.makeText(AudioPlayerApplication.getContext(), "Sync database", Toast.LENGTH_SHORT).show();
             return true;
         }

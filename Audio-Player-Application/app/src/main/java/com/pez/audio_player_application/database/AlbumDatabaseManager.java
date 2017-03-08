@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class AlbumDatabaseManager {
 
-    public static Album albumFromCursor(Cursor c) {
+    /* public static Album albumFromCursor(Cursor c) {
         if (c != null) {
             final Album album = new Album();
             album.setTracks(new ArrayList<Track>());
@@ -61,7 +61,38 @@ public class AlbumDatabaseManager {
         }
         return null;
     }
+    */
 
+    public static Track trackFromCursor(Cursor c) {
+        if (c != null) {
+            final Track track = new Track();
+
+            // artist
+            if (c.getColumnIndex(AlbumDatabaseContract.ARTIST) >= 0) {
+                String artist_name = c.getString(c.getColumnIndex(AlbumDatabaseContract.ARTIST));
+                track.setArtist(artist_name);
+            }
+
+            // title
+            if (c.getColumnIndex(AlbumDatabaseContract.TITLE) >= 0) {
+                track.setName(c.getString(c.getColumnIndex(AlbumDatabaseContract.TITLE)));
+            }
+
+            // title
+            if (c.getColumnIndex(AlbumDatabaseContract.ALBUM) >= 0) {
+                track.setAlbum(c.getString(c.getColumnIndex(AlbumDatabaseContract.ALBUM)));
+            }
+
+            // cover_url
+            if (c.getColumnIndex(AlbumDatabaseContract.COVER_URL) >= 0) {
+                track.setCover_url(c.getString(c.getColumnIndex(AlbumDatabaseContract.COVER_URL)));
+            }
+            return track;
+        }
+        return null;
+    }
+
+    /*
     public static ContentValues albumToContentValues(Album album) {
         final ContentValues values = new ContentValues();
 
@@ -75,15 +106,40 @@ public class AlbumDatabaseManager {
         values.put(AlbumDatabaseContract.COVER_URL, album.getCoverUrl());
 
         return values;
-    }
+    } */
 
+    public static ContentValues trackToContentValues(Track track) {
+        final ContentValues values = new ContentValues();
+
+        values.put(AlbumDatabaseContract.ARTIST, track.getArtist());
+        values.put(AlbumDatabaseContract.TITLE, track.getName());
+        values.put(AlbumDatabaseContract.ALBUM, track.getAlbum());
+        values.put(AlbumDatabaseContract.COVER_URL, track.getCover_url());
+
+        return values;
+    }
+/*
+    @Deprecated
     public static void saveAlbum(Album album) {
         try {
             // We will not insert the album twice
             if(getAlbumFromDatabase(album.getTitle(), album.getArtist()) == null) {
-                final ContentValues contentValues = albumToContentValues(album);
+                final ContentValues contentValues = trackToContentValues(album);
                 AudioPlayerApplication.getContext().getContentResolver().insert(AlbumDatabaseContract.ALBUM_META_URI, contentValues);
                 Log.i("AlbumDatabaseManager", "Successful insertion of the album: " + album.toString());
+            }
+        } catch (Exception e) {
+            Log.e("", e.getMessage());
+        }
+    } */
+
+    public static void saveTrack(Track track) {
+        try {
+            // We will not insert the album twice
+            if(getTrackFromDatabase(track.getName(), track.getArtist()) == null) {
+                final ContentValues contentValues = trackToContentValues(track);
+                AudioPlayerApplication.getContext().getContentResolver().insert(AlbumDatabaseContract.ALBUM_META_URI, contentValues);
+                Log.i("AlbumDatabaseManager", "Successful insertion of the track: " + track.toString());
             }
         } catch (Exception e) {
             Log.e("", e.getMessage());
@@ -95,7 +151,7 @@ public class AlbumDatabaseManager {
                 AlbumDatabaseContract.DELETE_ALBUM_MBID_EQUALS, new String[]{album.getMbid()});
     }
 
-    public static Album getAlbumFromDatabase(String albumName, String artistName) {
+    /* public static Album getAlbumFromDatabase(String albumName, String artistName) {
         Context context = AudioPlayerApplication.getContext();
         if (context != null && !TextUtils.isEmpty(albumName) && !TextUtils.isEmpty(artistName)) {
             Cursor albumCursor = context.getContentResolver().query(AlbumDatabaseContract.ALBUM_META_URI,
@@ -109,6 +165,26 @@ public class AlbumDatabaseManager {
         }
         return null;
     }
+*/
+
+    public static Track getTrackFromDatabase(String trackName, String artistName) {
+        Context context = AudioPlayerApplication.getContext();
+        if (context != null && !TextUtils.isEmpty(trackName) && !TextUtils.isEmpty(artistName)) {
+            Cursor albumCursor = context.getContentResolver().query(AlbumDatabaseContract.ALBUM_META_URI,
+                    AlbumDatabaseContract.PROJECTION_FULL,
+                    AlbumDatabaseContract.COVER_URL_CLAUSE,
+                    new String[]{trackName, artistName},
+                    null
+            );
+            if (albumCursor.moveToFirst()) {
+                Track trackFind = AlbumDatabaseManager.trackFromCursor(albumCursor);
+                if(trackFind.getName().equals(trackName) && trackFind.getArtist().equals(artistName)) {
+                    return trackFind;
+                }
+            }
+        }
+        return null;
+    }
 
     public static void testContentProvider() {
         Context context = AudioPlayerApplication.getContext();
@@ -116,8 +192,8 @@ public class AlbumDatabaseManager {
             Cursor cursor = context.getContentResolver().query(AlbumDatabaseContract.ALBUM_META_URI,
                     AlbumDatabaseContract.PROJECTION_FULL, null, null, null);
             while (cursor.moveToNext()) {
-                Album album = AlbumDatabaseManager.albumFromCursor(cursor);
-                Log.i("AlbumDatabaseManager", "Retrieved 1 album: " + album.toString());
+                Track track = AlbumDatabaseManager.trackFromCursor(cursor);
+                Log.i("AlbumDatabaseManager", "Retrieved 1 track: " + track.toString() + " -- " + track.getCover_url());
             }
         }
     }

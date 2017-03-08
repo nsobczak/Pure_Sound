@@ -14,6 +14,7 @@ import com.pez.audio_player_application.async.RetrieveAlbumInfoAsyncTask;
 import com.pez.audio_player_application.database.AlbumDatabaseManager;
 import com.pez.audio_player_application.interfaces.AlbumInfoChangeListener;
 import com.pez.audio_player_application.pojo.Album;
+import com.pez.audio_player_application.pojo.Track;
 
 import java.util.List;
 
@@ -34,10 +35,10 @@ public class MainActivityFragmentAlbums extends Fragment implements AlbumInfoCha
     }
 
     @Override
-    public void onAlbumInfoRetrieved(List<Album> albums) {
-        // We store the album metadata (if necessary)
-        for(Album album : albums)
-            AlbumDatabaseManager.saveAlbum(album);
+    public void onAlbumInfoRetrieved(List<Track> tracks) {
+        // We store the track metadata (if necessary)
+        for(Track track : tracks)
+            AlbumDatabaseManager.saveTrack(track);
     }
 
 

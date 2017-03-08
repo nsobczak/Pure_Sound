@@ -1,6 +1,7 @@
 package com.pez.audio_player_application.interfaces;
 
 import com.pez.audio_player_application.pojo.Album;
+import com.pez.audio_player_application.pojo.Track;
 
 import java.util.List;
 
@@ -11,6 +12,6 @@ import java.util.List;
 
 public interface AlbumInfoChangeListener {
 
-    void onAlbumInfoRetrieved(List<Album> albums);
+    void onAlbumInfoRetrieved(List<Track> tracks);
 
 }

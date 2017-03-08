@@ -15,8 +15,8 @@ import android.support.annotation.RequiresApi;
 
 public class AlbumDatabaseHelper extends SQLiteOpenHelper implements BaseColumns {
 
-    public static final int DATABASE_VERSION = 5;
-    public static final String DATABASE_NAME = "AlbumsInfo.db";
+    public static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "TracksInfo.db";
 
     public AlbumDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

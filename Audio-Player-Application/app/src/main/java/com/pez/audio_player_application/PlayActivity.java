@@ -2,17 +2,21 @@ package com.pez.audio_player_application;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.media.AudioManager;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pez.audio_player_application.database.AlbumDatabaseManager;
 import com.pez.audio_player_application.pojo.Queue;
 import com.pez.audio_player_application.pojo.Track;
 import com.pez.audio_player_application.utils.TimeUtilities;
@@ -147,13 +151,16 @@ public class PlayActivity extends Activity {
                 FloatingActionButton buttonPlayPause = (FloatingActionButton) findViewById(R.id.button_PlayPause);
                 buttonPlayPause.setImageResource(android.R.drawable.ic_media_pause);
 
+                ImageView coverAlbum = (ImageView)findViewById(R.id.imageCover);
+                AlbumDatabaseManager.testContentProvider();
+                String cover_url  = AlbumDatabaseManager.getTrackFromDatabase(trackToRead.getName(), trackToRead.getArtist()).getCover_url();
+
                 TextView textViewtTitre = (TextView) findViewById(R.id.textViewTitre);
                 textViewtTitre.setText(trackToRead.getName());
 
                 TextView textViewtArtisteAlbum = (TextView) findViewById(R.id.textViewArtisteAlbum);
                 textViewtArtisteAlbum.setText(trackToRead.getArtist() + " - " + trackToRead.getAlbum());
-            } catch (IOException e) {
-            }
+            } catch (IOException e) { }
         }
     }
 

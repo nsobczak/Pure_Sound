@@ -4,13 +4,14 @@ import android.os.AsyncTask;
 
 import com.pez.audio_player_application.async.RetrieveAlbumInfoAsyncTask;
 import com.pez.audio_player_application.pojo.Album;
+import com.pez.audio_player_application.pojo.Track;
 
 public class DownloadAlbumInfo extends MainActivityFragmentAlbums {
 
     private AsyncTask downloadTask;
 
-    public void retrieveAlbumsInfo(Album... albums) {
-        downloadTask = new RetrieveAlbumInfoAsyncTask(this).execute(albums);
+    public void retrieveAlbumsInfo(Track... tracks) {
+        downloadTask = new RetrieveAlbumInfoAsyncTask(this).execute(tracks);
     }
 
     @Override
