@@ -1,5 +1,7 @@
 package com.pez.audio_player_application.helpers;
 
+import android.util.Log;
+
 import com.pez.audio_player_application.pojo.Album;
 import com.pez.audio_player_application.pojo.Track;
 import com.pez.audio_player_application.utils.Constants;
@@ -92,7 +94,7 @@ public class MetadataSongHelper {
                             return track;
                         }
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Log.e("", "Unable to parse metadata JSON of the track : " + track.toString());
                     }
                 }
             }

@@ -173,11 +173,15 @@ public class AlbumDatabaseManager {
             Cursor albumCursor = context.getContentResolver().query(AlbumDatabaseContract.ALBUM_META_URI,
                     AlbumDatabaseContract.PROJECTION_FULL,
                     AlbumDatabaseContract.COVER_URL_CLAUSE,
-                    new String[] { trackName, artistName },
+                    new String[]{trackName, artistName},
                     null
             );
-            if(albumCursor.moveToFirst())
-                return AlbumDatabaseManager.trackFromCursor(albumCursor);
+            if (albumCursor.moveToFirst()) {
+                Track trackFind = AlbumDatabaseManager.trackFromCursor(albumCursor);
+                if(trackFind.getName().equals(trackName) && trackFind.getArtist().equals(artistName)) {
+                    return trackFind;
+                }
+            }
         }
         return null;
     }
