@@ -1,61 +1,27 @@
 package com.pez.audio_player_application;
 
 import android.Manifest;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import com.pez.audio_player_application.adapters.TracksAdapter;
 import com.pez.audio_player_application.interfaces.TrackListener;
-import com.pez.audio_player_application.pojo.Album;
 import com.pez.audio_player_application.pojo.Queue;
 import com.pez.audio_player_application.pojo.Track;
-import com.pez.audio_player_application.ui.fragments.DownloadAlbumInfo;
-import com.pez.audio_player_application.ui.fragments.MainActivityFragmentSongs;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.View;
-
-import android.widget.Button;
-import android.widget.ImageView;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-
 
 //__________________________________________________________________________
 
 /**
  * MainActivity : activity_01
- * TODO: Faire un lien vers la 2ème activité quand on clique sur une chanson
- * TODO: ajouter la liste des chansons
- * TODO: lier les 3 fragments
- * TODO: lier metadonnées et chansons
  */
 public class MainActivity extends AppCompatActivity implements TrackListener {
 

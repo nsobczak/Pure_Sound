@@ -4,16 +4,13 @@ import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.pez.audio_player_application.R;
-import com.pez.audio_player_application.async.RetrieveAlbumInfoAsyncTask;
 import com.pez.audio_player_application.database.AlbumDatabaseManager;
 import com.pez.audio_player_application.interfaces.AlbumInfoChangeListener;
-import com.pez.audio_player_application.pojo.Album;
 import com.pez.audio_player_application.pojo.Track;
 
 import java.util.List;

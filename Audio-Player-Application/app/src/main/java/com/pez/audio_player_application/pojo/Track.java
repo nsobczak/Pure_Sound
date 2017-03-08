@@ -1,12 +1,5 @@
 package com.pez.audio_player_application.pojo;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import android.provider.MediaStore;
-import android.util.Log;
-import android.util.LongSparseArray;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 

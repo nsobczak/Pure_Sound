@@ -1,29 +1,18 @@
 package com.pez.audio_player_application;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.media.AudioManager;
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.pez.audio_player_application.async.DownloadImageAsyncTask;
 import com.pez.audio_player_application.async.RetrieveAlbumInfoAsyncTask;
-import com.pez.audio_player_application.database.AlbumDatabaseManager;
 import com.pez.audio_player_application.pojo.Queue;
 import com.pez.audio_player_application.pojo.Track;
 import com.pez.audio_player_application.utils.TimeUtilities;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.Timer;

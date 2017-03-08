@@ -3,7 +3,6 @@ package com.pez.audio_player_application.ui.fragments;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.os.Bundle;
@@ -25,7 +24,6 @@ import com.pez.audio_player_application.adapters.TracksAdapter;
 import com.pez.audio_player_application.async.RetrieveTracksAsyncTask;
 import com.pez.audio_player_application.interfaces.TrackChangeListener;
 import com.pez.audio_player_application.interfaces.TrackListener;
-import com.pez.audio_player_application.pojo.Album;
 import com.pez.audio_player_application.pojo.Track;
 
 import java.util.ArrayList;
