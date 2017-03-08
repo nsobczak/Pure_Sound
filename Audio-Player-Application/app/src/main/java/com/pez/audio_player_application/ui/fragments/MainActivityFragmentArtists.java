@@ -3,7 +3,6 @@ package com.pez.audio_player_application.ui.fragments;
 import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
