@@ -60,7 +60,13 @@ public class Album {
             if(albumJSON.has("url"))
                 this.url = albumJSON.getString("url");
             JSONArray images = albumJSON.getJSONArray("image");
-            this.cover_url = ((JSONObject)images.get(images.length() - 1)).getString("#text");
+            for(int i = 0 ; i < images.length() ; i++){
+                JSONObject test = (JSONObject)images.get(i);
+                if(test.getString("size").equals("extralarge")){
+                    this.cover_url = test.getString("#text");
+                }
+            }
+            //this.cover_url = ((JSONObject)images.get(images.length() - 1)).getString("#text");
             this.tracks = new ArrayList<>();
             if(albumJSON.has("tracks")) {
                 JSONArray tracklist = albumJSON.getJSONObject("tracks").getJSONArray("track");

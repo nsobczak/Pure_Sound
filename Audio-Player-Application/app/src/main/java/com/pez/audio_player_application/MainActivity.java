@@ -47,8 +47,7 @@ import java.util.Comparator;
  * TODO: lier les 3 fragments
  * TODO: lier metadonnées et chansons
  */
-public class MainActivity extends AppCompatActivity implements TrackListener
-{
+public class MainActivity extends AppCompatActivity implements TrackListener {
 
     private static Queue playQueue = new Queue();
     private static MediaPlayer mediaPlayer = new MediaPlayer();
@@ -79,41 +78,6 @@ public class MainActivity extends AppCompatActivity implements TrackListener
                 return;
             }
         }
-
-        // === Gestion des boutons ===
-        FloatingActionButton fab_songPlay = (FloatingActionButton) findViewById(R.id.fab_songPlay);
-        fab_songPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Play song", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        FloatingActionButton fab_songNext = (FloatingActionButton) findViewById(R.id.fab_songNext);
-        fab_songNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Next song", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        FloatingActionButton fab_songPause = (FloatingActionButton) findViewById(R.id.fab_songPause);
-        fab_songPause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "On pause", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        FloatingActionButton fab_songPrevious = (FloatingActionButton) findViewById(R.id.fab_songPrevious);
-        fab_songPrevious.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Previous song", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
     }
 
@@ -154,13 +118,7 @@ public class MainActivity extends AppCompatActivity implements TrackListener
             finish();
             return true;
         }
-
-        //handle here : Synchronize database action
-        if (id == R.id.actionSyncDB)
-        {
-            Toast.makeText(AudioPlayerApplication.getContext(), "Sync database", Toast.LENGTH_SHORT).show();
-            return true;
-        }
+        
 
         return super.onOptionsItemSelected(item);
     }
@@ -168,8 +126,13 @@ public class MainActivity extends AppCompatActivity implements TrackListener
     //__________________________________________________________________________
     @Override
     public void onViewTrack(Track track) {
-        playQueue.addTracks(track);
-        playMusic();
+        if (playQueue.getTracks().contains(track)) {
+            playMusic(playQueue.getTracks().indexOf(track));
+        } else {
+            playQueue.addTracks(track);
+            playMusic();
+        }
+
     }
 
     public void playMusic(int position) {

@@ -22,6 +22,12 @@ public class Queue {
         }
     }
 
+    public void addTracks(List<Track> tracks) {
+        for (Track track : tracks) {
+            this.tracks.add(track);
+        }
+    }
+
     public Track getCurrentTrack() {
         if (currentTrackIndex > -1 && this.tracks.size() > currentTrackIndex) {
             return this.tracks.get(currentTrackIndex);

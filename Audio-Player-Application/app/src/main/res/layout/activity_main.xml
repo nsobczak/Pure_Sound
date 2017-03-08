@@ -36,57 +36,6 @@
                 android:background="#cfab82"
                 app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
-            <RelativeLayout
-                android:id="@+id/buttonsbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom">
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fab_songPlay"
-                    android:layout_width="@dimen/fab_width"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|left"
-                    android:layout_margin="@dimen/fab_margin"
-                    app:backgroundTint="@color/Red_dark"
-                    app:srcCompat="@android:drawable/ic_media_play"/>
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fab_songPause"
-                    android:layout_width="@dimen/fab_width"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_margin="@dimen/fab_margin"
-                    android:layout_toRightOf="@id/fab_songPlay"
-                    app:backgroundTint="@color/Red_dark"
-                    app:layout_anchor="@id/fab_songPlay"
-                    app:layout_anchorGravity="bottom"
-                    app:srcCompat="@android:drawable/ic_media_pause"/>
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fab_songPrevious"
-                    android:layout_width="@dimen/fab_width"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_margin="@dimen/fab_margin"
-                    android:layout_toRightOf="@id/fab_songPause"
-                    app:backgroundTint="@color/Red_dark"
-                    app:layout_anchor="@id/fab_songPause"
-                    app:layout_anchorGravity="bottom"
-                    app:srcCompat="@android:drawable/ic_media_previous"/>
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fab_songNext"
-                    android:layout_width="@dimen/fab_width"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_margin="@dimen/fab_margin"
-                    android:layout_toRightOf="@id/fab_songPrevious"
-                    app:backgroundTint="@color/Red_dark"
-                    app:srcCompat="@android:drawable/ic_media_next"/>
-
-            </RelativeLayout>
-
         </android.support.design.widget.AppBarLayout>
 
     </android.support.design.widget.CoordinatorLayout>

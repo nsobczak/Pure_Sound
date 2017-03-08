@@ -11,7 +11,7 @@ public class DownloadAlbumInfo extends MainActivityFragmentAlbums {
     private AsyncTask downloadTask;
 
     public void retrieveAlbumsInfo(Track... tracks) {
-        downloadTask = new RetrieveAlbumInfoAsyncTask(this).execute(tracks);
+        //downloadTask = new RetrieveAlbumInfoAsyncTask(this).execute(tracks);
     }
 
     @Override

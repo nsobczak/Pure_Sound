@@ -94,6 +94,9 @@ public class MainActivityFragmentSongs extends Fragment implements TrackChangeLi
         //add a listener when an item is clicked
         this.songListView.setOnItemClickListener(this);
 
+        this.retrieveTracksAsyncTask = new RetrieveTracksAsyncTask(this);
+        this.retrieveTracksAsyncTask.execute();
+
         return view;
     }
 
@@ -103,8 +106,8 @@ public class MainActivityFragmentSongs extends Fragment implements TrackChangeLi
     {
         super.onStart();
 
-        this.retrieveTracksAsyncTask = new RetrieveTracksAsyncTask(this);
-        this.retrieveTracksAsyncTask.execute();
+        //this.retrieveTracksAsyncTask = new RetrieveTracksAsyncTask(this);
+        //this.retrieveTracksAsyncTask.execute();
     }
 
 
@@ -134,6 +137,8 @@ public class MainActivityFragmentSongs extends Fragment implements TrackChangeLi
 
         this.retrieveTracksAsyncTask.cancel(true);
         this.retrieveTracksAsyncTask = null;
+
+        MainActivity.getPlayQueue().addTracks(tracks);
     }
 
 

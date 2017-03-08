@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pez.audio_player_application.async.DownloadImageAsyncTask;
+import com.pez.audio_player_application.async.RetrieveAlbumInfoAsyncTask;
 import com.pez.audio_player_application.database.AlbumDatabaseManager;
 import com.pez.audio_player_application.pojo.Queue;
 import com.pez.audio_player_application.pojo.Track;
@@ -134,9 +135,6 @@ public class PlayActivity extends Activity {
     }
 
     private void readQueue() {
-        ImageView myImg = (ImageView) findViewById(R.id.imageCover);
-        DownloadImageAsyncTask newDL = new DownloadImageAsyncTask(myImg, null);
-        newDL.execute("http://static1.businessinsider.com/image/539f3ffbecad044276726c01-960/amazon-com-logo.jpg");
         Queue playQueue = MainActivity.getPlayQueue();
         Track trackToRead = playQueue.getCurrentTrack();
         if (trackToRead != null) {
@@ -152,14 +150,14 @@ public class PlayActivity extends Activity {
                 mediaPlayer.setDataSource(url);
                 mediaPlayer.prepareAsync();
 
+                ImageView imgView = (ImageView) findViewById(R.id.imageCover);
+                imgView.setImageResource(R.drawable.coverplaceholder);
+                RetrieveAlbumInfoAsyncTask getCoverTask = new RetrieveAlbumInfoAsyncTask(imgView);
+                getCoverTask.execute(trackToRead);
+
                 FloatingActionButton buttonPlayPause = (FloatingActionButton) findViewById(R.id.button_PlayPause);
                 buttonPlayPause.setImageResource(android.R.drawable.ic_media_pause);
 
-                //AlbumDatabaseManager.testContentProvider();
-//                Track foundTrack = AlbumDatabaseManager.getTrackFromDatabase(trackToRead.getName(), trackToRead.getArtist());
-//                if (foundTrack != null) {
-//                    String coverURL = foundTrack.getCover_url();
-//                }
                 TextView textViewtTitre = (TextView) findViewById(R.id.textViewTitre);
                 textViewtTitre.setText(trackToRead.getName());
 
@@ -199,6 +197,9 @@ public class PlayActivity extends Activity {
             // Dernière chanson de la file
             FloatingActionButton buttonPlayPause = (FloatingActionButton) findViewById(R.id.button_PlayPause);
             buttonPlayPause.setImageResource(android.R.drawable.ic_media_play);
+            if(MainActivity.getMediaPlayer().isPlaying()){
+                MainActivity.getMediaPlayer().pause();
+            }
         }
     }
 }
