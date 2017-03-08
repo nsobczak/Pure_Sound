@@ -112,8 +112,8 @@ public class MainActivityFragmentSongs extends Fragment implements TrackChangeLi
     public void onTrackRetrieved(List<Track> tracks)
     {
         // On récupère les métadonnées
-        downloadAlbumInfo = new DownloadAlbumInfo();
-        downloadAlbumInfo.retrieveAlbumsInfo(tracks.toArray(new Track[tracks.size()]));
+        //downloadAlbumInfo = new DownloadAlbumInfo();
+        //downloadAlbumInfo.retrieveAlbumsInfo(tracks.toArray(new Track[tracks.size()]));
 
         //trie des chansons par ordre alphabétique
         if (tracks != null)
